@@ -1,27 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="86c9af80-cacf-47d7-a632-4349d30106dd" name="Default Changelist" comment="Created basic program structure">
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/natha.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/intellij-javadocs-4.0.1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DWAcceptanceTests/DWAcceptanceTests.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DWApp/DWApp.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DWApp/src/Company/Organization.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DWApp/src/Driver.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DWApp/src/Personnel/Employee.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DWApp/src/Personnel/EmployeePower.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DWApp/src/Personnel/President.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DWApp/src/Personnel/Supervisor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DWApp/src/Personnel/VicePresident.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DWApp/src/Personnel/Worker.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DWIntegrationTests/DWIntegrationTests.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DisfunctionalWorkplace.drawio" beforeDir="false" afterPath="$PROJECT_DIR$/DWDiagrams/DisfunctionalWorkplace.drawio" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DisfunctionalWorkplace.png" beforeDir="false" afterPath="$PROJECT_DIR$/DWDiagrams/DisfunctionalWorkplace.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DWApp/src/Driver.java" beforeDir="false" afterPath="$PROJECT_DIR$/DWApp/src/Driver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DWApp/src/Personnel/President.java" beforeDir="false" afterPath="$PROJECT_DIR$/DWApp/src/Personnel/President.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DWApp/src/Personnel/Supervisor.java" beforeDir="false" afterPath="$PROJECT_DIR$/DWApp/src/Personnel/Supervisor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DWApp/src/Personnel/VicePresident.java" beforeDir="false" afterPath="$PROJECT_DIR$/DWApp/src/Personnel/VicePresident.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DWApp/src/Personnel/Worker.java" beforeDir="false" afterPath="$PROJECT_DIR$/DWApp/src/Personnel/Worker.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,14 +50,23 @@
   <component name="ProjectId" id="1hbTvIY1aimqaOAzSpRX0c9l8lw" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SONARLINT_PRECOMMIT_ANALYSIS" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
     <property name="jdk.selected.PLUGIN_MODULE" value="IntelliJ IDEA Community Edition IC-193.5662.53" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -77,8 +90,21 @@
   </component>
   <component name="RunManager">
     <configuration name="Driver" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="14" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="Driver" />
       <module name="DWApp" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -89,18 +115,7 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
-  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -111,6 +126,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1600279021099</updated>
+      <workItem from="1600638355484" duration="719000" />
+      <workItem from="1600806878700" duration="397000" />
+      <workItem from="1600982213725" duration="3303000" />
     </task>
     <task id="LOCAL-00001" summary="First Commit">
       <created>1600279057732</created>
@@ -122,11 +140,30 @@
     <option name="localTasksCounter" value="2" />
     <servers />
   </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First Commit" />
     <option name="LAST_COMMIT_MESSAGE" value="First Commit" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="414" y="175" width="1092" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600806998178">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="414" y="175" width="1092" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1600806998178" />
     <state x="190" y="105" key="#com.intellij.ide.util.MemberChooser" timestamp="1600297290906">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -135,30 +172,55 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="346" y="14" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1600298267350" />
-    <state width="722" height="214" key="GridCell.Tab.0.bottom" timestamp="1600295294077">
-      <screen x="0" y="0" width="1536" height="834" />
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1600807276622">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1600807276622" />
+    <state width="916" height="285" key="GridCell.Tab.0.bottom" timestamp="1600985535430">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="722" height="214" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1600295294077" />
-    <state width="722" height="214" key="GridCell.Tab.0.center" timestamp="1600295294077">
-      <screen x="0" y="0" width="1536" height="834" />
+    <state width="916" height="285" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1600985535430" />
+    <state width="916" height="285" key="GridCell.Tab.0.center" timestamp="1600985535430">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="722" height="214" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1600295294077" />
-    <state width="722" height="214" key="GridCell.Tab.0.left" timestamp="1600295294077">
-      <screen x="0" y="0" width="1536" height="834" />
+    <state width="916" height="285" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1600985535430" />
+    <state width="916" height="285" key="GridCell.Tab.0.left" timestamp="1600985535430">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="722" height="214" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1600295294077" />
-    <state width="722" height="214" key="GridCell.Tab.0.right" timestamp="1600295294077">
-      <screen x="0" y="0" width="1536" height="834" />
+    <state width="916" height="285" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1600985535430" />
+    <state width="916" height="285" key="GridCell.Tab.0.right" timestamp="1600985535430">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="722" height="214" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1600295294077" />
+    <state width="916" height="285" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1600985535430" />
+    <state width="916" height="351" key="GridCell.Tab.1.bottom" timestamp="1600985498025">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="916" height="351" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1600985498025" />
+    <state width="916" height="351" key="GridCell.Tab.1.center" timestamp="1600985498025">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="916" height="351" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1600985498025" />
+    <state width="916" height="351" key="GridCell.Tab.1.left" timestamp="1600985498025">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="916" height="351" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1600985498025" />
+    <state width="916" height="351" key="GridCell.Tab.1.right" timestamp="1600985498025">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="916" height="351" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1600985498025" />
     <state x="2" y="0" key="SettingsEditor" timestamp="1600297989416">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="2" y="0" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1600297989416" />
-    <state x="361" y="151" key="Vcs.Push.Dialog.v2" timestamp="1600279073897">
-      <screen x="0" y="0" width="1536" height="834" />
+    <state x="451" y="188" key="Vcs.Push.Dialog.v2" timestamp="1600807049517">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="361" y="151" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1600279073897" />
+    <state x="451" y="188" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1600807049517" />
     <state x="465" y="242" key="com.intellij.ide.util.TipDialog" timestamp="1600279028042">
       <screen x="0" y="0" width="1536" height="834" />
     </state>

@@ -6,7 +6,7 @@ public class VicePresident extends Employee implements EmployeePower {
     static final int MAX_UNDER = 3;
 
     // Methods
-    public VicePresident() {
+    public VicePresident(String name) {
     }
 
     @Override

@@ -5,7 +5,7 @@ public class Worker extends Employee implements EmployeePower {
     // Variables
 
     // Methods
-    public Worker() {
+    public Worker(String name) {
     }
 
     @Override

@@ -6,7 +6,8 @@ public class President extends Employee implements EmployeePower {
     private final static int MAX_UNDER = 2;
 
     // Methods
-    public President() {
+    public President(String name) {
+        setName(name);
     }
 
     @Override

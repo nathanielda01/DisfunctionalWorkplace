@@ -5,7 +5,7 @@ public class Supervisor extends Employee implements EmployeePower {
     // Variables
 
     // Methods
-    public Supervisor() {
+    public Supervisor(String name) {
     }
 
     @Override
