@@ -3,17 +3,17 @@ package Personnel;
 // TODO
 public abstract class Employee {
     // Variables
-    private String name;
-    private String[] underlings;
-    private int underlingCount;
-    private Employee manager;
-    private boolean canFire;
-    private boolean canHire;
-    private boolean canLayoff;
-    private boolean canTransfer;
-    private boolean canQuit;
-    private boolean canPromote;
-    private boolean isPromotable;
+    protected String name;
+    protected String[] underlings;
+    protected int underlingCount;
+    protected Employee manager;
+    protected boolean canFire;
+    protected boolean canHire;
+    protected boolean canLayoff;
+    protected boolean canTransfer;
+    protected boolean canQuit;
+    protected boolean canPromote;
+    protected boolean isPromotable;
 
     // Methods
     public Employee() { }
