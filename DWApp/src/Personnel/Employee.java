@@ -4,7 +4,7 @@ package Personnel;
 public abstract class Employee {
     // Variables
     private String name;
-    private String[] underlings;
+    private Employee[] underlings;
     private int underlingCount;
     private Employee manager;
     private boolean canFire;
@@ -21,8 +21,11 @@ public abstract class Employee {
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
 
-    public String[] getUnderlings() { return underlings; }
-    public void setUnderlings(String[] underlings) { this.underlings = underlings; }
+    public Employee[] getUnderlings() { return underlings; }
+    public void setUnderlings(Employee[] underlings) {
+        this.underlings = underlings;
+        setUnderlingCount(underlings.length);
+    }
 
     public int getUnderlingCount() { return underlingCount; }
     public void setUnderlingCount(int underlingCount) { this.underlingCount = underlingCount; }

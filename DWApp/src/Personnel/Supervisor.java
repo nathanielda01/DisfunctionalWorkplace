@@ -6,6 +6,7 @@ public class Supervisor extends Employee implements EmployeePower {
 
     // Methods
     public Supervisor(String name) {
+        setName(name);
     }
 
     @Override
