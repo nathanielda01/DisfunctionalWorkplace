@@ -7,6 +7,7 @@ public class VicePresident extends Employee implements EmployeePower {
 
     // Methods
     public VicePresident(String name) {
+        setName(name);
     }
 
     @Override
