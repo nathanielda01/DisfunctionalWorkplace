@@ -1,0 +1,30 @@
+
+{
+java:S1450"YRemove the "canPromote" field and declare it as a local variable in the relevant methods.(Ò¦Úÿÿÿÿÿ8Ö‹ŞÈÉ.
+|
+java:S1450"ZRemove the "canTransfer" field and declare it as a local variable in the relevant methods.(²µÕÄüÿÿÿÿ8¹ôÖÈÉ.
+H
+java:S1068"+Remove this unused "canHire" private field.(ğÅı¥8óÄÏÈÉ.
+H
+java:S1068"+Remove this unused "canQuit" private field.(Òì˜ó8ÔõÙÈÉ.
+s
+java:S1450"VRemove the "canQuit" field and declare it as a local variable in the relevant methods.(Òì˜ó8ÔõÙÈÉ.
+z
+java:S1450"XRemove the "canLayoff" field and declare it as a local variable in the relevant methods.(İåÿ´ûÿÿÿÿ8óÊÒÈÉ.
+M
+java:S1172#"0Remove this unused method parameter "canLayoff".(Éš¼ı8ÜÀĞÈÉ.
+Q
+java:S1068"/Remove this unused "canTransfer" private field.(²µÕÄüÿÿÿÿ8¹ôÖÈÉ.
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(í†ëŒşÿÿÿÿ8ËĞ‚ÉÉ.
+}
+java:S1450"[Remove the "isPromotable" field and declare it as a local variable in the relevant methods.(šæº’ıÿÿÿÿ8öóàÈÉ.
+O
+java:S1068"-Remove this unused "canLayoff" private field.(İåÿ´ûÿÿÿÿ8óÊÒÈÉ.
+P
+java:S1068".Remove this unused "canPromote" private field.(Ò¦Úÿÿÿÿÿ8Ö‹ŞÈÉ.
+s
+java:S1450"VRemove the "canHire" field and declare it as a local variable in the relevant methods.(ğÅı¥8¹ìĞÈÉ.
+O
+java:S1135"2Complete the task associated to this TODO comment.(…ïœ†8œÔÉÉ.
+R
+java:S1068"0Remove this unused "isPromotable" private field.(šæº’ıÿÿÿÿ8öóàÈÉ.
