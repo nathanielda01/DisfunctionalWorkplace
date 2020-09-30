@@ -85,20 +85,19 @@ public class Organization {
     }
 
     public void printOrganization() {
-        System.out.println("\t\t\t\t\tPresident: " + president.getName());
+        //Print president
+        System.out.println("President: " + president.getName() + "\n");
 
-        //President underlings
-        for (Employee underling: president.getUnderlings()) {
-            System.out.print("Vice President: " + underling.getName()+"\t\t");
-        }
-
-        System.out.println();
-
-        //Vice President underlings
-        for (int i = 0; i < president.getUnderlingCount(); i++) {
-            for (Employee underling: president.getUnderlings()[i].getUnderlings()) {
-                System.out.println("Supervisor: " + underling.getName());
+        //Print organization
+        for(int i = 0; i < president.getUnderlingCount(); i++) {
+            System.out.println("Vice President: " + president.getUnderlings()[i].getName());
+            for (int j = 0; j < president.getUnderlings()[i].getUnderlingCount(); j++) {
+                System.out.println("Supervisor: " + president.getUnderlings()[i].getUnderlings()[j].getName());
+                for (int k = 0; k < president.getUnderlings()[i].getUnderlings()[j].getUnderlingCount(); k++) {
+                    System.out.println("Workers: " + president.getUnderlings()[i].getUnderlings()[j].getUnderlings()[k].getName());
+                }
             }
+            System.out.println();
         }
 
 
@@ -107,7 +106,7 @@ public class Organization {
 
     public void printWelcome() {
         System.out.println("Dysfunctional Organization Application");
-        System.out.println("\nCurrent organization of Wacky Widget company\n");
+        System.out.println("\nCurrent organization of Wacky Widget company:\n");
 
     }
 }
