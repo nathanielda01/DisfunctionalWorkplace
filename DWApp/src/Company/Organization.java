@@ -99,9 +99,6 @@ public class Organization {
             }
             System.out.println();
         }
-
-
-
     }
 
     public void printWelcome() {
