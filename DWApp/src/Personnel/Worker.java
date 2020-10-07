@@ -6,6 +6,7 @@ public class Worker extends Employee implements EmployeePower {
 
     // Methods
     public Worker(String name) {
+        setName(name);
     }
 
     @Override
