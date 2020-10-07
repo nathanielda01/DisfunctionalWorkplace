@@ -1,0 +1,71 @@
+
+
+java:S1186Q"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(·íÕñ8°æ÷ÈÉ.
+
+java:S1186M"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Û’À8¹ŸöÈÉ.
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(à›§‡ÿÿÿÿÿ8‹˜‚ÉÉ.
+O
+java:S1135"2Complete the task associated to this TODO comment.(…ïœ†8¸ÀÑÉÉ.
+M
+java:S1172I"+Remove this unused method parameter "name".(ÉâÆşÿÿÿÿ8Õ–ôÈÉ.
+J	java:S1089")Either remove or fill this block of code.(¹ËÏğùÿÿÿÿ8½ÄèşÍ.
+I
+java:S1481",Remove this unused "worker1" local variable.(«™®¤8½ÄèşÍ.
+I
+java:S1481",Remove this unused "worker2" local variable.(ìªò“8½ÄèşÍ.
+I
+java:S1481",Remove this unused "worker3" local variable.(×ºšà8½ÄèşÍ.
+N
+java:S1481",Remove this unused "worker4" local variable.(²ı†œıÿÿÿÿ8½ÄèşÍ.
+N
+java:S1481",Remove this unused "worker5" local variable.(†•¥¯ùÿÿÿÿ8½ÄèşÍ.
+N
+java:S1481",Remove this unused "worker6" local variable.(ô —Šıÿÿÿÿ8½ÄèşÍ.
+I
+java:S1481",Remove this unused "worker7" local variable.(Èí8½ÄèşÍ.
+H
+java:S1481",Remove this unused "worker8" local variable.(Ş©Èg8½ÄèşÍ.
+I
+java:S1481 ",Remove this unused "worker9" local variable.(ÇÔè8½ÄèşÍ.
+O
+java:S1481!"-Remove this unused "worker10" local variable.(‰ı€™úÿÿÿÿ8½ÄèşÍ.
+O
+java:S1481""-Remove this unused "worker11" local variable.(×—²úÿÿÿÿ8½ÄèşÍ.
+O
+java:S1481#"-Remove this unused "worker12" local variable.(ÕÆ¾‰ıÿÿÿÿ8½ÄèşÍ.
+I
+java:S1481$"-Remove this unused "worker13" local variable.(˜Ÿ¸O8½ÄèşÍ.
+J
+java:S1481%"-Remove this unused "worker14" local variable.(´øì8½ÄèşÍ.
+O
+java:S1481&"-Remove this unused "worker15" local variable.(Š¹º©ıÿÿÿÿ8½ÄèşÍ.
+J
+java:S1481'"-Remove this unused "worker16" local variable.(·Š´Å8½ÄèşÍ.
+J
+java:S1481("-Remove this unused "worker17" local variable.(‹’ş—8½ÄèşÍ.
+O
+java:S1481)"-Remove this unused "worker18" local variable.(†Û¾‡ûÿÿÿÿ8½ÄèşÍ.
+J
+java:S1481*"-Remove this unused "worker19" local variable.(¨äÕÅ8½ÄèşÍ.
+J
+java:S1481+"-Remove this unused "worker20" local variable.(ë‰í•8½ÄèşÍ.
+J
+java:S1481,"-Remove this unused "worker21" local variable.(® ¯ª8½ÄèşÍ.
+O
+java:S1481-"-Remove this unused "worker22" local variable.(ŒŠÎğùÿÿÿÿ8½ÄèşÍ.
+J
+java:S1481."-Remove this unused "worker23" local variable.(™ò¬ğ8½ÄèşÍ.
+O
+java:S1481/"-Remove this unused "worker24" local variable.(à·Àíúÿÿÿÿ8½ÄèşÍ.
+O
+java:S14810"-Remove this unused "worker25" local variable.( ¡¯õøÿÿÿÿ8½ÄèşÍ.
+O
+java:S14811"-Remove this unused "worker26" local variable.(‰ÀËÅşÿÿÿÿ8½ÄèşÍ.
+O
+java:S14812"-Remove this unused "worker27" local variable.(Â°ğ€ùÿÿÿÿ8½ÄèşÍ.
+O
+java:S14813"-Remove this unused "worker28" local variable.(¸Ö‚üÿÿÿÿ8½ÄèşÍ.
+J
+java:S14814"-Remove this unused "worker29" local variable.(Ëƒ°8½ÄèşÍ.
+J
+java:S14815"-Remove this unused "worker30" local variable.(¯€±¾8½ÄèşÍ.
