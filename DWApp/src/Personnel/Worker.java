@@ -5,8 +5,10 @@ public class Worker extends Employee implements EmployeePower {
     // Variables
 
     // Methods
-    public Worker(String name) {
+    public Worker(String name, Employee manager) {
         setName(name);
+        this.setManager(manager);
+        setCanFire(true);
     }
 
     @Override

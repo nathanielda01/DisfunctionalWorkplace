@@ -3,11 +3,13 @@ package Personnel;
 // TODO
 public class President extends Employee implements EmployeePower {
     // Variables
-    private final static int MAX_UNDER = 2;
+    public final static int MAX_UNDER = 2;
 
     // Methods
     public President(String name) {
         setName(name);
+        setCanFire(true);
+        setCanHire(true);
     }
 
     @Override
