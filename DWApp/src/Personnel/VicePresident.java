@@ -3,11 +3,14 @@ package Personnel;
 // TODO
 public class VicePresident extends Employee implements EmployeePower {
     // Variables
-    static final int MAX_UNDER = 3;
+    public static final int MAX_UNDER = 3;
 
     // Methods
-    public VicePresident(String name) {
+    public VicePresident(String name, Employee manager) {
         setName(name);
+        this.setManager(manager);
+        setCanFire(true);
+        setCanHire(true);
     }
 
     @Override
