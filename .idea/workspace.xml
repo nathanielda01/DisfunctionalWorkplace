@@ -25,15 +25,11 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="86c9af80-cacf-47d7-a632-4349d30106dd" name="Default Changelist" comment="Finished print methods to print organization fully and somewhat neatly.">
+    <list default="true" id="86c9af80-cacf-47d7-a632-4349d30106dd" name="Default Changelist" comment="App menu mostly finished, needs testing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DWApp/src/Company/Organization.java" beforeDir="false" afterPath="$PROJECT_DIR$/DWApp/src/Company/Organization.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DWApp/src/Driver.java" beforeDir="false" afterPath="$PROJECT_DIR$/DWApp/src/Driver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DWApp/src/Personnel/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/DWApp/src/Personnel/Employee.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DWApp/src/Personnel/President.java" beforeDir="false" afterPath="$PROJECT_DIR$/DWApp/src/Personnel/President.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DWApp/src/Personnel/Supervisor.java" beforeDir="false" afterPath="$PROJECT_DIR$/DWApp/src/Personnel/Supervisor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DWApp/src/Personnel/VicePresident.java" beforeDir="false" afterPath="$PROJECT_DIR$/DWApp/src/Personnel/VicePresident.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DWApp/src/Personnel/Worker.java" beforeDir="false" afterPath="$PROJECT_DIR$/DWApp/src/Personnel/Worker.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,6 +113,7 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -148,21 +145,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Driver" />
         <item itemvalue="Application.Driver" />
       </list>
     </recent_temporary>
@@ -185,6 +170,7 @@
       <workItem from="1601422843491" duration="10220000" />
       <workItem from="1601488082153" duration="1130000" />
       <workItem from="1601504635603" duration="10000" />
+      <workItem from="1602626929112" duration="588000" />
     </task>
     <task id="LOCAL-00001" summary="First Commit">
       <created>1600279057732</created>
@@ -214,7 +200,14 @@
       <option name="project" value="LOCAL" />
       <updated>1601446656869</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="App menu mostly finished, needs testing">
+      <created>1602551658877</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1602551658877</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -249,7 +242,9 @@
     <MESSAGE value="Initialize company and hierarchy" />
     <MESSAGE value="Moved organization setup into setup and added print statements, need to finish full organization print statements." />
     <MESSAGE value="Finished print methods to print organization fully and somewhat neatly." />
-    <option name="LAST_COMMIT_MESSAGE" value="Finished print methods to print organization fully and somewhat neatly." />
+    <MESSAGE value="Checkout from remote master" />
+    <MESSAGE value="App menu mostly finished, needs testing" />
+    <option name="LAST_COMMIT_MESSAGE" value="App menu mostly finished, needs testing" />
   </component>
   <component name="WindowStateProjectService">
     <state x="72" y="178" key="#Deployment" timestamp="1601427793003">
@@ -277,28 +272,28 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1601504643555" />
-    <state width="1238" height="212" key="GridCell.Tab.0.bottom" timestamp="1602459338985">
+    <state width="1238" height="212" key="GridCell.Tab.0.bottom" timestamp="1602627245020">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="212" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1602459338985" />
+    <state width="1238" height="212" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1602627245020" />
     <state width="722" height="214" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1600295294077" />
     <state width="1877" height="278" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1601489220890" />
-    <state width="1238" height="212" key="GridCell.Tab.0.center" timestamp="1602459338984">
+    <state width="1238" height="212" key="GridCell.Tab.0.center" timestamp="1602627245017">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="212" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1602459338984" />
+    <state width="1238" height="212" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1602627245017" />
     <state width="722" height="214" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1600295294077" />
     <state width="1877" height="278" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1601489220889" />
-    <state width="1238" height="212" key="GridCell.Tab.0.left" timestamp="1602459338983">
+    <state width="1238" height="212" key="GridCell.Tab.0.left" timestamp="1602627245015">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="212" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1602459338983" />
+    <state width="1238" height="212" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1602627245015" />
     <state width="722" height="214" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1600295294077" />
     <state width="1877" height="278" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1601489220889" />
-    <state width="1238" height="212" key="GridCell.Tab.0.right" timestamp="1602459338984">
+    <state width="1238" height="212" key="GridCell.Tab.0.right" timestamp="1602627245019">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="212" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1602459338984" />
+    <state width="1238" height="212" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1602627245019" />
     <state width="722" height="214" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1600295294077" />
     <state width="1877" height="278" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1601489220889" />
     <state width="1238" height="264" key="GridCell.Tab.1.bottom" timestamp="1602458252934">
@@ -343,9 +338,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="209" y="38" key="new project wizard/0.0.1536.834@0.0.1536.834" timestamp="1600297552225" />
-    <state x="1103" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1601424933079">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="735" y="173" width="670" height="522" key="search.everywhere.popup" timestamp="1602627253831">
+      <screen x="0" y="0" width="1280" height="800" />
     </state>
+    <state x="735" y="173" width="670" height="522" key="search.everywhere.popup/0.0.1280.800@0.0.1280.800" timestamp="1602627253831" />
     <state x="1103" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1601424933079" />
   </component>
 </project>

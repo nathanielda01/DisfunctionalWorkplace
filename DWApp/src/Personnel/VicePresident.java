@@ -11,6 +11,7 @@ public class VicePresident extends Employee implements EmployeePower {
         this.setManager(manager);
         setCanFire(true);
         setCanHire(true);
+        setCanTransfer(true);
     }
 
     @Override

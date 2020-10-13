@@ -132,7 +132,7 @@ public class Driver {
                             if (employeeRef != null && quitEmp.getManager().getName() == employeeRef.getName()) {
                                 // TODO let them quit, change string name to "" Nate A.
                             } else {
-                                System.out.println("Warning: Direct manager is not quiting employee's, failed to quit.\n");
+                                System.out.println("Warning: Direct manager is not quiting employee's manager, failed to quit.\n");
                             }
                         } else {
                             System.out.println("Warning: That employee does not exist, cannot quit!\n");

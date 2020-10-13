@@ -10,6 +10,7 @@ public class President extends Employee implements EmployeePower {
         setName(name);
         setCanFire(true);
         setCanHire(true);
+        setCanTransfer(true);
     }
 
     @Override
