@@ -13,11 +13,11 @@ public class Driver {
     public static void main(String[] args) {
         organization = new Organization();
         organization.printWelcome();
-        organization.printOrganization();
-        appMenu();
+        organization.loadOrganization("TestOrg.txt");
+        appMenu(organization);
     }
 
-    public static void appMenu() {
+    public static void appMenu(Organization organization) {
         String input = "";
         String hireInput = "";
         Scanner scanner = new Scanner(System.in);
@@ -42,7 +42,7 @@ public class Driver {
                         System.out.print("Enter new hire name: ");
                         hireInput = (hireInput.replaceAll(input, scanner.nextLine().strip()));
                         System.out.println();
-                        if (!organization.exists(input)) {
+                        if (!organization.employeeNameExists(input)) {
                             System.out.print("Enter hiring manager: ");
                             input = (input.replaceAll(input, scanner.nextLine().strip()));
                             System.out.println();
@@ -83,6 +83,7 @@ public class Driver {
                     case "Promote":
                         break;
                     case "Print":
+                        organization.printOrganization();
                         break;
                 }
             }

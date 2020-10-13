@@ -10,7 +10,7 @@ public class Supervisor extends Employee {
     // Methods
     public Supervisor() {
         underlingCount = 0;
-        setName("vacant");
+        setName(VACANT);
         for (int i = 0; i < workers.length; i++) {
             workers[i] = new Worker();
             workers[i].setName(VACANT);
@@ -22,13 +22,10 @@ public class Supervisor extends Employee {
     }
 
     public void print() {
-        if (!isEmpty() )
         System.out.println("\t\tSupervisor: " + getName());
 
-        if (!hasNoEmployees()) {
-            for (Worker worker : workers) {
-                worker.print();
-            }
+        for (Worker worker : workers) {
+            worker.print();
         }
     }
 }
