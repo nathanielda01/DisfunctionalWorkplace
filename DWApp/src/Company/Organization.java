@@ -50,6 +50,8 @@ public class Organization {
             }
         }
         return false;
+    }
+    
     public Employee search(String name) {
 
         if (president.getName().equals(name)) {
@@ -109,5 +111,8 @@ public class Organization {
         System.out.println("Dysfunctional Organization Application");
         System.out.println("\nCurrent organization of Wacky Widget company:\n");
 
+    }
+
+    public void fillVacancy(President president, String hireInput) {
     }
 }

@@ -42,7 +42,7 @@ public class Driver {
                         System.out.print("Enter new hire name: ");
                         hireInput = (hireInput.replaceAll(input, scanner.nextLine().strip()));
                         System.out.println();
-                        if (!organization.employeeNameExists(input)) {
+                        if (!organization.exists(input)) {
                             System.out.print("Enter hiring manager: ");
                             input = (input.replaceAll(input, scanner.nextLine().strip()));
                             System.out.println();

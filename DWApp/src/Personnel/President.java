@@ -3,10 +3,9 @@ package Personnel;
 // TODO
 public class President extends Employee{
     // Variables
-    private final static int MAX_UNDER = 2;
+    public final static int MAX_UNDER = 2;
     static final String VACANT = "vacant";
     private final VicePresident[] vicePresidents = new VicePresident[MAX_UNDER];
-    public final static int MAX_UNDER = 2;
 
     // Methods
     public President() {
@@ -15,16 +14,9 @@ public class President extends Employee{
         for (int i = 0; i < vicePresidents.length; i++) {
             vicePresidents[i] = new VicePresident();
             vicePresidents[i].setName(VACANT);
+            setCanFire(true);
+            setCanHire(true);
         }
-    public President(String name) {
-        setName(name);
-        setCanFire(true);
-        setCanHire(true);
-    }
-
-    @Override
-    public void fire() {
-
     }
 
     public VicePresident[] getVPs() {
@@ -39,9 +31,6 @@ public class President extends Employee{
             }
         }
     }
-
-    @Override
-    public void transfer() {
 
     public void deleteUnderling(int index) {
         underlings[index].name = VACANT;
