@@ -33,8 +33,10 @@ public abstract class Employee {
     public Employee getManager() { return manager; }
     public void setManager(Employee manager) { this.manager = manager; }
 
-    public void powerToFire(boolean canFire) { this.canFire = canFire; }
-    public void powerToHire(boolean canHire) { this.canHire = canHire; }
+    public void setCanFire(boolean canFire) { this.canFire = canFire; }
+    public void setCanHire(boolean canHire) { this.canHire = canHire; }
+    public boolean getCanFire() { return canFire; }
+    public boolean getCanHire() { return canHire; }
     public void powerToLayoff(boolean canLayoff) { this.canLayoff = canFire; }
     public void powerToTransfer(boolean canTransfer) { this.canTransfer = canTransfer; }
     public void powerToQuit(boolean canQuit) { this.canQuit = canQuit; }
