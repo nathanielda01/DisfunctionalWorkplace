@@ -3,7 +3,7 @@ package Personnel;
 // TODO
 public class VicePresident extends Employee {
     // Variables
-    static final int MAX_UNDER = 3;
+    public static final int MAX_UNDER = 3;
     static final String VACANT = "vacant";
     private final Supervisor[] supervisors = new Supervisor[MAX_UNDER];
 
@@ -15,6 +15,16 @@ public class VicePresident extends Employee {
             supervisors[i] = new Supervisor();
             supervisors[i].setName(VACANT);
         }
+    public VicePresident(String name, Employee manager) {
+        setName(name);
+        this.setManager(manager);
+        setCanFire(true);
+        setCanHire(true);
+    }
+
+    @Override
+    public void fire() {
+
     }
 
     public Supervisor[] getSupervisors() {

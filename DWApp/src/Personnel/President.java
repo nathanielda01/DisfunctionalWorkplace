@@ -6,6 +6,7 @@ public class President extends Employee{
     private final static int MAX_UNDER = 2;
     static final String VACANT = "vacant";
     private final VicePresident[] vicePresidents = new VicePresident[MAX_UNDER];
+    public final static int MAX_UNDER = 2;
 
     // Methods
     public President() {
@@ -15,6 +16,15 @@ public class President extends Employee{
             vicePresidents[i] = new VicePresident();
             vicePresidents[i].setName(VACANT);
         }
+    public President(String name) {
+        setName(name);
+        setCanFire(true);
+        setCanHire(true);
+    }
+
+    @Override
+    public void fire() {
+
     }
 
     public VicePresident[] getVPs() {
@@ -29,6 +39,9 @@ public class President extends Employee{
             }
         }
     }
+
+    @Override
+    public void transfer() {
 
     public void deleteUnderling(int index) {
         underlings[index].name = VACANT;
