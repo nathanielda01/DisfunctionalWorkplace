@@ -3,17 +3,18 @@ package Personnel;
 // TODO
 public abstract class Employee {
     // Variables
-    private String name;
-    private Employee[] underlings;
-    private int underlingCount;
-    private Employee manager;
-    private boolean canFire;
-    private boolean canHire;
-    private boolean canLayoff;
-    private boolean canTransfer;
-    private boolean canQuit;
-    private boolean canPromote;
-    private boolean isPromotable;
+    protected String name;
+    protected Employee[] underlings;
+    protected int underlingCount;
+    protected Employee manager;
+    protected boolean canFire;
+    protected boolean canHire;
+    protected boolean canLayoff;
+    protected boolean canTransfer;
+    protected boolean canQuit;
+    protected boolean canPromote;
+    protected boolean isPromotable;
+    static final String VACANT = "vacant";
 
     // Methods
     public Employee() { }
@@ -30,9 +31,21 @@ public abstract class Employee {
     public int getUnderlingCount() { return underlingCount; }
     public void setUnderlingCount(int underlingCount) { this.underlingCount = underlingCount; }
 
-    public Employee getManager() { return manager; }
-    public void setManager(Employee manager) { this.manager = manager; }
+    public boolean isEmpty() {
+        if (name.equals(VACANT)) {
+            return true;
+        }
+        return  false;
+    }
 
+    public boolean hasNoEmployees() {
+        for (int i = 0; i < underlings.length; i++) {
+            if (!underlings[i].name.equals(VACANT)) {
+                return false;
+            }
+        }
+        return true;
+    }
     public void setCanFire(boolean canFire) { this.canFire = canFire; }
     public void setCanHire(boolean canHire) { this.canHire = canHire; }
     public boolean getCanFire() { return canFire; }
