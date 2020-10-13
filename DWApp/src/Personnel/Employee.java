@@ -38,8 +38,10 @@ public abstract class Employee {
     public boolean getCanFire() { return canFire; }
     public boolean getCanHire() { return canHire; }
     public void powerToLayoff(boolean canLayoff) { this.canLayoff = canFire; }
-    public void powerToTransfer(boolean canTransfer) { this.canTransfer = canTransfer; }
+    public void setCanTransfer(boolean canTransfer) { this.canTransfer = canTransfer; }
+    public boolean getCanTransfer() { return  canTransfer; }
     public void powerToQuit(boolean canQuit) { this.canQuit = canQuit; }
-    public void powerToPromote(boolean canPromote) { this.canPromote = canPromote; }
+    public void setCanPromote(boolean canPromote) { this.canPromote = canPromote; }
+    public boolean getCanPromote() {return canPromote;}
     public void canBePromoted(boolean isPromotable) { this.isPromotable = isPromotable; }
 }

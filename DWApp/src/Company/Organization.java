@@ -150,7 +150,7 @@ public class Organization {
     }
 
     public void fillVacancy(Employee manager, String empName) {
-        for (int i = 0; i < manager.getUnderlingCount(); i++) {
+        for (int i = 0; i < manager.getUnderlings().length; i++) {
             if (manager.getUnderlings()[i] == null) {
                 switch (manager.getClass().getSimpleName()) {
                     case "President":
@@ -164,6 +164,14 @@ public class Organization {
                         break;
                 }
                 return;
+            }
+        }
+    }
+
+    public void fireEmployee(Employee manager, Employee worker) {
+        for (int i = 0; i < manager.getUnderlings().length; i++) {
+            if (manager.getUnderlings()[i].getName().equals(worker.getName())) {
+                manager.getUnderlings()[i] = null;
             }
         }
     }
