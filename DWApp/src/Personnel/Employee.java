@@ -3,17 +3,18 @@ package Personnel;
 // TODO
 public abstract class Employee {
     // Variables
-    private String name;
-    private Employee[] underlings;
-    private int underlingCount;
-    private Employee manager;
-    private boolean canFire;
-    private boolean canHire;
-    private boolean canLayoff;
-    private boolean canTransfer;
-    private boolean canQuit;
-    private boolean canPromote;
-    private boolean isPromotable;
+    protected String name;
+    protected Employee[] underlings;
+    protected int underlingCount;
+    protected Employee manager;
+    protected boolean canFire;
+    protected boolean canHire;
+    protected boolean canLayoff;
+    protected boolean canTransfer;
+    protected boolean canQuit;
+    protected boolean canPromote;
+    protected boolean isPromotable;
+    static final String VACANT = "vacant";
 
     // Methods
     public Employee() { }
@@ -21,23 +22,22 @@ public abstract class Employee {
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
 
-    public Employee[] getUnderlings() { return underlings; }
-    public void setUnderlings(Employee[] underlings) {
-        this.underlings = underlings;
-        setUnderlingCount(underlings.length);
-    }
-
     public int getUnderlingCount() { return underlingCount; }
     public void setUnderlingCount(int underlingCount) { this.underlingCount = underlingCount; }
 
-    public Employee getManager() { return manager; }
-    public void setManager(Employee manager) { this.manager = manager; }
+    public boolean isEmpty() {
+        if (name.equals(VACANT)) {
+            return true;
+        }
+        return  false;
+    }
 
-    public void powerToFire(boolean canFire) { this.canFire = canFire; }
-    public void powerToHire(boolean canHire) { this.canHire = canHire; }
-    public void powerToLayoff(boolean canLayoff) { this.canLayoff = canFire; }
-    public void powerToTransfer(boolean canTransfer) { this.canTransfer = canTransfer; }
-    public void powerToQuit(boolean canQuit) { this.canQuit = canQuit; }
-    public void powerToPromote(boolean canPromote) { this.canPromote = canPromote; }
-    public void canBePromoted(boolean isPromotable) { this.isPromotable = isPromotable; }
+    public boolean hasNoEmployees() {
+        for (int i = 0; i < underlings.length; i++) {
+            if (!underlings[i].name.equals(VACANT)) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

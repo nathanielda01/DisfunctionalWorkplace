@@ -1,36 +1,17 @@
 package Personnel;
 
 // TODO
-public class Worker extends Employee implements EmployeePower {
+public class Worker extends Employee {
     // Variables
-
+    static final String VACANT = "vacant";
     // Methods
-    public Worker(String name) {
-        setName(name);
+    public Worker() {
+        setName(VACANT);
     }
 
-    @Override
-    public void fire() {
-
-    }
-
-    @Override
-    public void hire() {
-
-    }
-
-    @Override
-    public void layoff() {
-
-    }
-
-    @Override
-    public void transfer() {
-
-    }
-
-    @Override
-    public void promote() {
-
+    public void print() {
+        if (!isEmpty()) {
+            System.out.println("\t\t\tWorker: " + getName());
+        }
     }
 }

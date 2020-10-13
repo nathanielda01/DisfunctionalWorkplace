@@ -10,8 +10,5 @@ public class Driver {
         Organization organization = new Organization();
         organization.printWelcome();
         organization.printOrganization();
-
-
-
     }
 }

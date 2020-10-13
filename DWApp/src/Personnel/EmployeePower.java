@@ -1,13 +1,13 @@
 package Personnel;
 
 public interface EmployeePower {
-    void fire();
+    void fire(String employee);
 
-    void hire();
+    void hire(String employee);
 
-    void layoff();
+    void layoff(String employee);
 
-    void transfer();
+    void transfer(String employee);
 
-    void promote();
+    void promote(String employee);
 }

@@ -1,36 +1,34 @@
 package Personnel;
 
 // TODO
-public class Supervisor extends Employee implements EmployeePower {
+public class Supervisor extends Employee {
     // Variables
+    static final int MAX_UNDER = 5;
+    private final Worker[] workers = new Worker[MAX_UNDER];
+    static final String VACANT = "vacant";
 
     // Methods
-    public Supervisor(String name) {
-        setName(name);
+    public Supervisor() {
+        underlingCount = 0;
+        setName("vacant");
+        for (int i = 0; i < workers.length; i++) {
+            workers[i] = new Worker();
+            workers[i].setName(VACANT);
+        }
     }
 
-    @Override
-    public void fire() {
-
+    public Worker[] getWorkers() {
+        return workers;
     }
 
-    @Override
-    public void hire() {
+    public void print() {
+        if (!isEmpty() )
+        System.out.println("\t\tSupervisor: " + getName());
 
-    }
-
-    @Override
-    public void layoff() {
-
-    }
-
-    @Override
-    public void transfer() {
-
-    }
-
-    @Override
-    public void promote() {
-
+        if (!hasNoEmployees()) {
+            for (Worker worker : workers) {
+                worker.print();
+            }
+        }
     }
 }

@@ -1,37 +1,45 @@
 package Personnel;
 
 // TODO
-public class President extends Employee implements EmployeePower {
+public class President extends Employee{
     // Variables
     private final static int MAX_UNDER = 2;
+    static final String VACANT = "vacant";
+    private final VicePresident[] vicePresidents = new VicePresident[MAX_UNDER];
 
     // Methods
-    public President(String name) {
-        setName(name);
+    public President() {
+        setName("vacant");
+        underlingCount = 0;
+        for (int i = 0; i < vicePresidents.length; i++) {
+            vicePresidents[i] = new VicePresident();
+            vicePresidents[i].setName(VACANT);
+        }
     }
 
-    @Override
-    public void fire() {
-
+    public VicePresident[] getVPs() {
+        return vicePresidents;
     }
 
-    @Override
-    public void hire() {
-
+    public void addUnderling(String name) {
+        for (int i = 0; i < vicePresidents.length; i++) {
+            if(vicePresidents[i].name.equals(VACANT)) {
+                vicePresidents[i].name = name;
+                underlingCount++;
+            }
+        }
     }
 
-    @Override
-    public void layoff() {
-
+    public void deleteUnderling(int index) {
+        underlings[index].name = VACANT;
+        underlingCount--;
     }
 
-    @Override
-    public void transfer() {
+    public void print() {
+        System.out.println("President: " + getName());
 
-    }
-
-    @Override
-    public void promote() {
-
+        for (VicePresident vice: vicePresidents) {
+            vice.print();
+        }
     }
 }
