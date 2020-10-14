@@ -4,7 +4,6 @@ package Personnel;
 public abstract class Employee {
     // Variables
     protected String name;
-    protected Employee[] underlings;
     protected int underlingCount;
     protected Employee manager;
     protected boolean canFire;
@@ -28,9 +27,6 @@ public abstract class Employee {
         this.manager = manager;
     }
 
-
-    public int getUnderlingCount() { return underlingCount; }
-    public void setUnderlingCount(int underlingCount) { this.underlingCount = underlingCount; }
 
     public boolean isEmpty() {
         if (name.equals(VACANT)) {
@@ -63,7 +59,7 @@ public abstract class Employee {
     public void setCanPromote(boolean canPromote) { this.canPromote = canPromote; }
     public boolean getCanPromote() {return canPromote;}
     public void setCanBePromoted(boolean isPromotable) { this.isPromotable = isPromotable; }
-    public boolean getCanBePromotable() {
+    public boolean getCanBePromoted() {
         return isPromotable;
     }
 }

@@ -20,6 +20,7 @@ public class Supervisor extends Employee {
         setCanFire(true);
         setCanPromote(false);
         setCanTransfer(false);
+        setCanLayoff(true);
     }
 
     public Worker[] getWorkers() {

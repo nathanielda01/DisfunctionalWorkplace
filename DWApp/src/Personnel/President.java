@@ -20,6 +20,7 @@ public class President extends Employee{
         setCanHire(true);
         setCanTransfer(true);
         setCanPromote(true);
+        setCanLayoff(true);
     }
 
     public VicePresident[] getVPs() {
@@ -33,11 +34,6 @@ public class President extends Employee{
                 underlingCount++;
             }
         }
-    }
-
-    public void deleteUnderling(int index) {
-        underlings[index].name = VACANT;
-        underlingCount--;
     }
 
     public void print() {

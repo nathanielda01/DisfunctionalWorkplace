@@ -7,6 +7,13 @@ public class Worker extends Employee {
     // Methods
     public Worker() {
         setName(VACANT);
+        setCanHire(false);
+        setCanFire(false);
+        setCanLayoff(false);
+        setCanQuit(true);
+        setCanTransfer(false);
+        setCanPromote(false);
+        setCanBePromoted(true);
     }
 
     public void print() {

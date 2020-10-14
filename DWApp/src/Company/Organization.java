@@ -180,6 +180,126 @@ public class Organization {
             }
         }*/
     }
+
+    public void quitEmployee(Employee manager, Employee worker) {
+        switch (manager.getClass().getSimpleName()) {
+            case "President":
+                President president = (President) manager;
+                for(int i = 0; i < president.getVPs().length; i++)
+                    if (president.getVPs()[i].getName().equals(worker.getName()))
+                        president.getVPs()[i].setName(VACANT);
+                break;
+            case "VicePresident":
+                VicePresident vp = (VicePresident) manager;
+                for(int i = 0; i < vp.getSupervisors().length; i++)
+                    if(vp.getSupervisors()[i].getName().equals(worker.getName()))
+                        vp.getSupervisors()[i].setName(VACANT);
+                break;
+            case "Supervisor":
+                Supervisor supervisor = (Supervisor) manager;
+                for(int i = 0; i < supervisor.getWorkers().length; i++)
+                    if(supervisor.getWorkers()[i].getName().equals(worker.getName()))
+                        supervisor.getWorkers()[i].setName(VACANT);
+                break;
+        }
+        return;
+    }
+
+    public void layoffEmployee(Employee manager, Employee worker) {
+        switch (worker.getClass().getSimpleName()) {
+            case "VicePresident":
+                layoffEmployeeVP((VicePresident) worker);
+                break;
+            case "Supervisor":
+                layoffEmployeeSupervisor((VicePresident) manager, (Supervisor) worker);
+                break;
+            case "Worker":
+                layoffEmployeeWorker((Supervisor) manager, (Worker) worker);
+                break;
+        }
+        return;
+    }
+
+    public void layoffEmployeeWorker(Supervisor manager, Worker worker) {
+        for (int i = 0; i < manager.getWorkers().length; i++) {
+            if (manager.getWorkers()[i].getName().equals(VACANT)) {
+                manager.getWorkers()[i].setName(worker.getName());
+                worker.setName(VACANT);
+                return;
+            }
+        }
+
+        //Reaching this point means no immediate opening under supervisor, move to VP group
+        VicePresident vp = (VicePresident) manager.getManager();
+        for (int i = 0; i < vp.getSupervisors().length; i++) {
+            for (int j = 0; j < vp.getSupervisors()[i].getWorkers().length; j++) {
+                if(vp.getSupervisors()[i].getWorkers()[j].getName().equals(VACANT)) {
+                    vp.getSupervisors()[i].getWorkers()[j].setName(worker.getName());
+                    worker.setName(VACANT);
+                    return;
+                }
+            }
+        }
+
+        //Reaching this point means no opening in VP hierarchy, move to other hierarchy
+        for(int i = 0; i < president.getVPs().length; i++) {
+            //gets the other vp not checked previously
+            if (!president.getVPs()[i].getName().equals(vp.getName())) {
+                for (int j = 0; j < president.getVPs()[i].getSupervisors().length; j++) {
+                    for(int k = 0; k < president.getVPs()[i].getSupervisors()[j].getWorkers().length; k++) {
+                        if (president.getVPs()[i].getSupervisors()[j].getWorkers()[k].getName().equals(VACANT)) {
+                            president.getVPs()[i].getSupervisors()[j].getWorkers()[k].setName(worker.getName());
+                            worker.setName(VACANT);
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+
+        //Reaching this point means no openings at worker level, worker is let go
+        worker.setName(VACANT);
+    }
+
+    public void layoffEmployeeSupervisor(VicePresident manager, Supervisor worker) {
+        for (int i = 0; i < manager.getSupervisors().length; i++) {
+            if(manager.getSupervisors()[i].getName().equals(VACANT)) {
+                manager.getSupervisors()[i].setName(worker.getName());
+                worker.setName(VACANT);
+                return;
+            }
+        }
+
+        //Reaching this point means no immediate opening under VP, moving to other VP group
+        for (int i = 0; i < president.getVPs().length; i++) {
+            //gets the other VP group not checked
+            if (!president.getVPs()[i].getName().equals(manager.getName())) {
+                for (int j = 0; j < president.getVPs()[i].getSupervisors().length; j++) {
+                    if(president.getVPs()[i].getSupervisors()[j].getName().equals(VACANT)) {
+                        president.getVPs()[i].getSupervisors()[j].setName(worker.getName());
+                        worker.setName(VACANT);
+                        return;
+                    }
+                }
+            }
+        }
+
+        //Reaching this point means no openings at supervisor level, supervisor is let go
+        worker.setName(VACANT);
+    }
+
+    public void layoffEmployeeVP(VicePresident worker) {
+        for (int i = 0; i < president.getVPs().length; i++) {
+            if (president.getVPs()[i].getName().equals(VACANT)) {
+                president.getVPs()[i].setName(worker.getName());
+                worker.setName(VACANT);
+                return;
+            }
+        }
+
+        //Reaching this point means no VP openings, VP is let go
+        worker.setName(VACANT);
+    }
 }
 
 
