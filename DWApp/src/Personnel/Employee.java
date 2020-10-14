@@ -28,11 +28,6 @@ public abstract class Employee {
         this.manager = manager;
     }
 
-    public Employee[] getUnderlings() { return underlings; }
-    public void setUnderlings(Employee[] underlings) {
-        this.underlings = underlings;
-        setUnderlingCount(underlings.length);
-    }
 
     public int getUnderlingCount() { return underlingCount; }
     public void setUnderlingCount(int underlingCount) { this.underlingCount = underlingCount; }
@@ -44,14 +39,6 @@ public abstract class Employee {
         return  false;
     }
 
-    public boolean hasNoEmployees() {
-        for (int i = 0; i < underlings.length; i++) {
-            if (!underlings[i].name.equals(VACANT)) {
-                return false;
-            }
-        }
-        return true;
-    }
 
 
 
@@ -59,11 +46,24 @@ public abstract class Employee {
     public void setCanHire(boolean canHire) { this.canHire = canHire; }
     public boolean getCanFire() { return canFire; }
     public boolean getCanHire() { return canHire; }
-    public void powerToLayoff(boolean canLayoff) { this.canLayoff = canFire; }
+    public void setCanLayoff(boolean canLayoff) { this.canLayoff = canLayoff; }
+    public boolean getCanLayoff() {
+        return canLayoff;
+    }
+
     public void setCanTransfer(boolean canTransfer) { this.canTransfer = canTransfer; }
     public boolean getCanTransfer() { return  canTransfer; }
-    public void powerToQuit(boolean canQuit) { this.canQuit = canQuit; }
+    public boolean getCanQuit() {
+        return canQuit;
+    }
+    public void setCanQuit(boolean canQuit) {
+        this.canQuit = canQuit;
+    }
+
     public void setCanPromote(boolean canPromote) { this.canPromote = canPromote; }
     public boolean getCanPromote() {return canPromote;}
-    public void canBePromoted(boolean isPromotable) { this.isPromotable = isPromotable; }
+    public void setCanBePromoted(boolean isPromotable) { this.isPromotable = isPromotable; }
+    public boolean getCanBePromotable() {
+        return isPromotable;
+    }
 }
