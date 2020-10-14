@@ -13,11 +13,13 @@ public class President extends Employee{
         underlingCount = 0;
         for (int i = 0; i < vicePresidents.length; i++) {
             vicePresidents[i] = new VicePresident();
+            vicePresidents[i].setManager(this);
             vicePresidents[i].setName(VACANT);
-            setCanFire(true);
-            setCanHire(true);
-            setCanTransfer(true);
         }
+        setCanFire(true);
+        setCanHire(true);
+        setCanTransfer(true);
+        setCanPromote(true);
     }
 
     public VicePresident[] getVPs() {

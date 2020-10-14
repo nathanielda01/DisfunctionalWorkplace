@@ -13,12 +13,14 @@ public class VicePresident extends Employee {
         setName(VACANT);
         for (int i = 0; i < supervisors.length; i++) {
             supervisors[i] = new Supervisor();
+            supervisors[i].setManager(this);
             supervisors[i].setName(VACANT);
         }
 
         setCanFire(true);
         setCanHire(true);
         setCanTransfer(true);
+        setCanPromote(true);
     }
 
     public Supervisor[] getSupervisors() {

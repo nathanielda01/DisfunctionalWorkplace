@@ -21,6 +21,12 @@ public abstract class Employee {
 
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
+    public Employee getManager() {
+        return manager;
+    }
+    public void setManager(Employee manager) {
+        this.manager = manager;
+    }
 
     public Employee[] getUnderlings() { return underlings; }
     public void setUnderlings(Employee[] underlings) {
@@ -46,6 +52,9 @@ public abstract class Employee {
         }
         return true;
     }
+
+
+
     public void setCanFire(boolean canFire) { this.canFire = canFire; }
     public void setCanHire(boolean canHire) { this.canHire = canHire; }
     public boolean getCanFire() { return canFire; }

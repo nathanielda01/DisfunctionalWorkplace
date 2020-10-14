@@ -1,7 +1,5 @@
 package Company;
-
-import Personnel.Employee;
-import Personnel.President;
+import Personnel.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -13,7 +11,7 @@ public class Organization {
     static final int PRES_MAX = 2;
     static final int VP_MAX = 3;
     static final int SUP_MAX = 5;
-    static final String VACANT = "vacant";
+    public static final String VACANT = "vacant";
     private String name;
     private President president;
 
@@ -109,29 +107,79 @@ public class Organization {
 
 
     public void fillVacancy(Employee manager, String empName) {
-        for (int i = 0; i < manager.getUnderlings().length; i++) {
-            if (manager.getUnderlings()[i] == null) {
+        switch (manager.getClass().getSimpleName()) {
+            case "President":
+                President president = (President) manager;
+                for(int i = 0; i < president.getVPs().length; i++)
+                    if (president.getVPs()[i].getName().equals(VACANT))
+                        president.getVPs()[i].setName(empName);
+                break;
+            case "VicePresident":
+                VicePresident vp = (VicePresident) manager;
+                for(int i = 0; i < vp.getSupervisors().length; i++)
+                    if(vp.getSupervisors()[i].getName().equals(VACANT))
+                        vp.getSupervisors()[i].setName(empName);
+                break;
+            case "Supervisor":
+                Supervisor supervisor = (Supervisor) manager;
+                for(int i = 0; i < supervisor.getWorkers().length; i++)
+                    if(supervisor.getWorkers()[i].getName().equals(VACANT))
+                        supervisor.getWorkers()[i].setName(empName);
+                break;
+        }
+        return;
+
+        /*for (int i = 0; i < manager.getUnderlings().length; i++) {
+            if (manager.getUnderlings()[i].getName().equals(VACANT)) {
                 switch (manager.getClass().getSimpleName()) {
                     case "President":
-                        manager.getUnderlings()[i] = new VicePresident(empName, manager);
+                        President president = (President) manager;
+                        president.getVPs()[i].setName(empName);
                         break;
                     case "VicePresident":
-                        manager.getUnderlings()[i] = new Supervisor(empName, manager);
+                        VicePresident vp = (VicePresident) manager;
+                        vp.getSupervisors()[i].setName(empName);
                         break;
                     case "Supervisor":
-                        manager.getUnderlings()[i] = new Worker(empName, manager);
+                        Supervisor supervisor = (Supervisor) manager;
+                        supervisor.getWorkers()[i].setName(empName);
                         break;
                 }
                 return;
             }
-        }
+        }*/
     }
 
     public void fireEmployee(Employee manager, Employee worker) {
-        for (int i = 0; i < manager.getUnderlings().length; i++) {
-            if (manager.getUnderlings()[i].getName().equals(worker.getName())) {
-                manager.getUnderlings()[i] = null;
-            }
+
+        switch (manager.getClass().getSimpleName()) {
+            case "President":
+                President president = (President) manager;
+                for(int i = 0; i < president.getVPs().length; i++)
+                    if (president.getVPs()[i].getName().equals(worker.getName()))
+                        president.getVPs()[i].setName(VACANT);
+                break;
+            case "VicePresident":
+                VicePresident vp = (VicePresident) manager;
+                for(int i = 0; i < vp.getSupervisors().length; i++)
+                    if(vp.getSupervisors()[i].getName().equals(worker.getName()))
+                        vp.getSupervisors()[i].setName(VACANT);
+                break;
+            case "Supervisor":
+                Supervisor supervisor = (Supervisor) manager;
+                for(int i = 0; i < supervisor.getWorkers().length; i++)
+                    if(supervisor.getWorkers()[i].getName().equals(worker.getName()))
+                        supervisor.getWorkers()[i].setName(VACANT);
+                break;
         }
+        return;
+
+        /*for (int i = 0; i < manager.getUnderlings().length; i++) {
+            if (manager.getUnderlings()[i].getName().equals(worker.getName())) {
+                manager.getUnderlings()[i].setName(VACANT);
+            }
+        }*/
     }
 }
+
+

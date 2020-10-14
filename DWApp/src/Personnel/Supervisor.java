@@ -3,7 +3,7 @@ package Personnel;
 // TODO
 public class Supervisor extends Employee {
     // Variables
-    static final int MAX_UNDER = 5;
+    public static final int MAX_UNDER = 5;
     private final Worker[] workers = new Worker[MAX_UNDER];
     static final String VACANT = "vacant";
 
@@ -13,8 +13,13 @@ public class Supervisor extends Employee {
         setName(VACANT);
         for (int i = 0; i < workers.length; i++) {
             workers[i] = new Worker();
+            workers[i].setManager(this);
             workers[i].setName(VACANT);
         }
+        setCanHire(true);
+        setCanFire(true);
+        setCanPromote(false);
+        setCanTransfer(false);
     }
 
     public Worker[] getWorkers() {
