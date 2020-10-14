@@ -5,7 +5,7 @@ public class President extends Employee{
     // Variables
     public final static int MAX_UNDER = 2;
     static final String VACANT = "vacant";
-    private final VicePresident[] vicePresidents = new VicePresident[MAX_UNDER];
+    private VicePresident[] vicePresidents = new VicePresident[MAX_UNDER];
 
     // Methods
     public President() {

@@ -10,7 +10,7 @@ public class VicePresident extends Employee {
     // Methods
     public VicePresident() {
         underlingCount = 0;
-        setName("vacant");
+        setName(VACANT);
         for (int i = 0; i < supervisors.length; i++) {
             supervisors[i] = new Supervisor();
             supervisors[i].setName(VACANT);

@@ -1,6 +1,11 @@
 package Company;
 
-import Personnel.*;
+import Personnel.Employee;
+import Personnel.President;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 // TODO
 public class Organization {
@@ -29,46 +34,23 @@ public class Organization {
         }
     }
 
-    public boolean exists(String name) {
-        if (president.getName().equals(name)) {
-            return true;
-        }
-
-        for (int i = 0; i < PRES_MAX; i++) {
-            if (president.getVPs()[i].getName().equals(name)) {
-                return true;
-            }
-            for (int j = 0; j < VP_MAX; j++) {
-                if (president.getVPs()[i].getSupervisors()[j].getName().equals(name)) {
-                    return true;
-                }
-                for (int k = 0; k < SUP_MAX; k++) {
-                    if (president.getVPs()[i].getSupervisors()[j].getWorkers()[k].getName().equals(name)) {
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
-    }
-    
     public Employee search(String name) {
 
         if (president.getName().equals(name)) {
             return president;
         }
 
-        for (int i = 0; i < president.getUnderlingCount(); i++) {
-            if (president.getUnderlings()[i].getName().equals(name)) {
-                return president.getUnderlings()[i];
+        for (int i = 0; i < president.getVPs().length; i++) {
+            if (president.getVPs()[i].getName().equals(name)) {
+                return president.getVPs()[i];
             }
-            for (int j = 0; j < president.getUnderlings()[i].getUnderlingCount(); j++) {
-                if (president.getUnderlings()[i].getUnderlings()[j].getName().equals(name)) {
-                    return president.getUnderlings()[i].getUnderlings()[j];
+            for (int j = 0; j < president.getVPs()[i].getSupervisors().length; j++) {
+                if (president.getVPs()[i].getSupervisors()[j].getName().equals(name)) {
+                    return president.getVPs()[i].getSupervisors()[j];
                 }
-                for (int k = 0; k < president.getUnderlings()[i].getUnderlings()[j].getUnderlingCount(); k++) {
-                    if (president.getUnderlings()[i].getUnderlings()[j].getUnderlings()[k].getName().equals(name)) {
-                        return president.getUnderlings()[i].getUnderlings()[j].getUnderlings()[k];
+                for (int k = 0; k < president.getVPs()[i].getSupervisors()[j].getWorkers().length; k++) {
+                    if (president.getVPs()[i].getSupervisors()[j].getWorkers()[k].getName().equals(name)) {
+                        return president.getVPs()[i].getSupervisors()[j].getWorkers()[k];
                     }
                 }
             }
@@ -81,16 +63,16 @@ public class Organization {
             return true;
         }
 
-        for (int i = 0; i < president.getUnderlingCount(); i++) {
-            if (president.getUnderlings()[i].getName().equals(name)) {
+        for (int i = 0; i < president.getVPs().length; i++) {
+            if (president.getVPs()[i].getName().equals(name)) {
                 return true;
             }
-            for (int j = 0; j < president.getUnderlings()[i].getUnderlingCount(); j++) {
-                if (president.getUnderlings()[i].getUnderlings()[j].getName().equals(name)) {
+            for (int j = 0; j < president.getVPs()[i].getSupervisors().length; j++) {
+                if (president.getVPs()[i].getSupervisors()[j].getName().equals(name)) {
                     return true;
                 }
-                for (int k = 0; k < president.getUnderlings()[i].getUnderlings()[j].getUnderlingCount(); k++) {
-                    if (president.getUnderlings()[i].getUnderlings()[j].getUnderlings()[k].getName().equals(name)) {
+                for (int k = 0; k < president.getVPs()[i].getSupervisors()[j].getWorkers().length; k++) {
+                    if (president.getVPs()[i].getSupervisors()[j].getWorkers()[k].getName().equals(name)) {
                         return true;
                     }
                 }
@@ -100,7 +82,19 @@ public class Organization {
     }
 
     public void loadOrganization(String filename) {
+        Scanner scanner;
 
+        File file = new File(filename);
+        try {
+            scanner = new Scanner(file);
+
+            while (search(VACANT) != null && scanner.hasNextLine()) {
+                Employee e = search(VACANT);
+                e.setName(scanner.nextLine());
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     public void printOrganization() {
