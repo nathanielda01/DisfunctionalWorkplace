@@ -28,11 +28,9 @@
     <list default="true" id="86c9af80-cacf-47d7-a632-4349d30106dd" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/TestOrg.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DWApp/src/Company/Organization.java" beforeDir="false" afterPath="$PROJECT_DIR$/DWApp/src/Company/Organization.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DWApp/src/Driver.java" beforeDir="false" afterPath="$PROJECT_DIR$/DWApp/src/Driver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DWApp/src/Personnel/EmployeePower.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/DWApp/src/Personnel/President.java" beforeDir="false" afterPath="$PROJECT_DIR$/DWApp/src/Personnel/President.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DWApp/src/Personnel/Supervisor.java" beforeDir="false" afterPath="$PROJECT_DIR$/DWApp/src/Personnel/Supervisor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DWApp/src/Personnel/VicePresident.java" beforeDir="false" afterPath="$PROJECT_DIR$/DWApp/src/Personnel/VicePresident.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -118,6 +116,7 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -175,6 +174,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Driver" />
+        <item itemvalue="Application.Driver" />
       </list>
     </recent_temporary>
   </component>
@@ -208,6 +208,7 @@
       <workItem from="1601422843491" duration="10220000" />
       <workItem from="1601488082153" duration="1130000" />
       <workItem from="1601504635603" duration="10000" />
+      <workItem from="1602626929112" duration="588000" />
     </task>
     <task id="LOCAL-00001" summary="First Commit">
       <created>1600279057732</created>

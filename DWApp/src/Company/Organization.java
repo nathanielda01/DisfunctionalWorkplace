@@ -107,6 +107,31 @@ public class Organization {
 
     }
 
-    public void fillVacancy(President president, String hireInput) {
+
+    public void fillVacancy(Employee manager, String empName) {
+        for (int i = 0; i < manager.getUnderlings().length; i++) {
+            if (manager.getUnderlings()[i] == null) {
+                switch (manager.getClass().getSimpleName()) {
+                    case "President":
+                        manager.getUnderlings()[i] = new VicePresident(empName, manager);
+                        break;
+                    case "VicePresident":
+                        manager.getUnderlings()[i] = new Supervisor(empName, manager);
+                        break;
+                    case "Supervisor":
+                        manager.getUnderlings()[i] = new Worker(empName, manager);
+                        break;
+                }
+                return;
+            }
+        }
+    }
+
+    public void fireEmployee(Employee manager, Employee worker) {
+        for (int i = 0; i < manager.getUnderlings().length; i++) {
+            if (manager.getUnderlings()[i].getName().equals(worker.getName())) {
+                manager.getUnderlings()[i] = null;
+            }
+        }
     }
 }

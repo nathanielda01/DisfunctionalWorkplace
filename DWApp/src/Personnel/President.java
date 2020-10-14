@@ -16,6 +16,7 @@ public class President extends Employee{
             vicePresidents[i].setName(VACANT);
             setCanFire(true);
             setCanHire(true);
+            setCanTransfer(true);
         }
     }
 

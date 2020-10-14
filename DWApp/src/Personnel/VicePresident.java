@@ -18,6 +18,7 @@ public class VicePresident extends Employee {
 
         setCanFire(true);
         setCanHire(true);
+        setCanTransfer(true);
     }
 
     public Supervisor[] getSupervisors() {
