@@ -13,11 +13,11 @@ public class Driver {
     public static void main(String[] args) {
         organization = new Organization();
         organization.printWelcome();
-        organization.printOrganization();
-        appMenu();
+        organization.loadOrganization("TestOrg.txt");
+        appMenu(organization);
     }
 
-    public static void appMenu() {
+    public static void appMenu(Organization organization) {
         String input = "";
         String hireInput = "";
         String fireInput = "";
