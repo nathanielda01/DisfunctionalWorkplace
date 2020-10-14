@@ -47,43 +47,32 @@ public class Driver {
                         System.out.print("Enter new hire name: ");
                         hireInput = (hireInput.replaceAll(hireInput, scanner.nextLine().strip()));
                         System.out.println();
-                        if (!organization.employeeNameExists(input)) {
+
+                        if (!organization.employeeNameExists(hireInput)) {
+
+                            Employee beingHired = organization.search(hireInput);
+
                             System.out.print("Enter hiring manager: ");
                             input = (input.replaceAll(input, scanner.nextLine().strip()));
                             System.out.println();
-                            managerRef = organization.search(input);
-                            if (managerRef != null && managerRef.getCanHire()) {
-                                switch (managerRef.getClass().getSimpleName()) {
-                                    case "President":
-                                        President president = (President) managerRef;
-                                        if (president.getUnderlingCount() < President.MAX_UNDER) {
-                                            organization.fillVacancy(president, hireInput); // TODO Nate A.
-                                        } else {
-                                            System.out.println("Warning: No vacancy directly under manager\n");
-                                        }
-                                        break;
-                                    case "VicePresident":
-                                        VicePresident vp = (VicePresident) managerRef;
-                                        if(vp.getUnderlingCount() < VicePresident.MAX_UNDER) {
-                                            organization.fillVacancy(vp, hireInput); // TODO Nate A.
-                                        } else {
-                                            System.out.println("Warning: No vacancy directly under manager\n");
-                                        }
-                                        break;
-                                    case "Supervisor":
-                                        Supervisor supervisor = (Supervisor) managerRef;
-                                        if (supervisor.getUnderlingCount() < Supervisor.MAX_UNDER) {
-                                            organization.fillVacancy(supervisor, hireInput); // TODO Nate A.
-                                        } else {
-                                            System.out.println("Warning: No vacancy directly under manager\n");
-                                        }
-                                        break;
-                                }
+
+                            if (organization.employeeNameExists(input)) {
+                                managerRef = organization.search(input);
                             } else {
-                                System.out.println("Warning: No employee exists with that name\n");
+                                System.out.println("Warning: Hiring manager does not exist");
+                                break;
                             }
+
+                            if (!managerRef.getName().equals(organization.VACANT) && managerRef.getCanHire()) {
+                                organization.fillVacancy(managerRef, hireInput);
+                            } else {
+                                //TODO print here or in fill vacancy if there is no space?
+                                break;
+                            }
+
                         } else {
                             System.out.println("Warning: That employee already exists, cannot hire!\n");
+                            break;
                         }
                         break;
                     case "Fire":
@@ -100,15 +89,17 @@ public class Driver {
 
                             if (organization.employeeNameExists(input))
                                 managerRef = organization.search(input);
-                            else
+                            else {
                                 System.out.println("Warning: Firing manager does not exist");
+                                break;
+                            }
 
                             if (!managerRef.getName().equals(organization.VACANT) && managerRef.getCanFire() && beingFired.getManager().getName() == managerRef.getName())
-                                // TODO string method removes having to update underlings if a manager is being fired
-                                organization.fireEmployee(managerRef, beingFired); // TODO Nate A.
-                            else
+                                organization.fireEmployee(managerRef, beingFired);
+                            else {
                                 System.out.println("Warning: Firing manager is not employee's direct manager\n");
-
+                                break;
+                            }
                         } else {
                             System.out.println("Warning: That employee does not exist, cannot fire!\n");
                         }
@@ -126,13 +117,16 @@ public class Driver {
 
                             if (organization.employeeNameExists(input))
                                 managerRef = organization.search(input);
-                            else
+                            else {
                                 System.out.println("Warning: Direct manager does not exist\n");
+                                break;
+                            }
 
-                            if (managerRef != null && quitEmp.getManager().getName() == managerRef.getName()) {
+                            if (!managerRef.getName().equals(organization.VACANT) && quitEmp.getManager().getName() == managerRef.getName()) {
                                 // TODO let them quit, change string name to "" Nate A.
                             } else {
                                 System.out.println("Warning: Direct manager is not quiting employee's manager, failed to quit.\n");
+                                break;
                             }
                         } else {
                             System.out.println("Warning: That employee does not exist, cannot quit!\n");
@@ -151,14 +145,17 @@ public class Driver {
 
                             if (organization.employeeNameExists(input))
                                 managerRef = organization.search(input);
-                            else
+                            else {
                                 System.out.println("Warning: Direct manager does not exist\n");
+                                break;
+                            }
 
-                            if (managerRef != null && layoffEmp.getManager().getName() == managerRef.getName()) {
+                            if (!managerRef.getName().equals(organization.VACANT) && layoffEmp.getManager().getName() == managerRef.getName()) {
                                 // TODO move them to another position within company if open, closest first
                                 // TODO if no comparable openings, let go
                             } else {
                                 System.out.println("Warning: Direct manager is not employee's manager, failed to layoff.\n");
+                                break;
                             }
                         } else {
                             System.out.println("Warning: That employee does not exist, cannot layoff!\n");
@@ -177,14 +174,17 @@ public class Driver {
 
                             if (organization.employeeNameExists(input))
                                 managerRef = organization.search(input);
-                            else
+                            else {
                                 System.out.println("Warning: Transferring manager does not exist.\n");
+                                break;
+                            }
 
-                            if (managerRef != null && managerRef.getCanTransfer()) {
+                            if (!managerRef.getName().equals(organization.VACANT) && managerRef.getCanTransfer()) {
                                 // TODO check if transfer employee is in manager's heiarchy
                                 // TODO transfer employee
                             } else {
                                 System.out.println("Warning: Transferring manager cannot transfer employee.\n");
+                                break;
                             }
                         } else {
                             System.out.println("Warning: That employee does not exist, cannot transfer!\n");
@@ -203,14 +203,17 @@ public class Driver {
 
                             if (organization.employeeNameExists(input))
                                 managerRef = organization.search(input);
-                            else
+                            else {
                                 System.out.println("Warning: Promoting manager does not exist.\n");
+                                break;
+                            }
 
-                            if (managerRef != null && managerRef.getCanPromote()) {
+                            if (!managerRef.getName().equals(organization.VACANT) && managerRef.getCanPromote()) {
                                 // TODO check promoting managers level and employee to be promoted level
                                 // TODO promote employee
                             } else {
                                 System.out.println("Warning: Promoting manager cannot promote employee.\n");
+                                break;
                             }
                         } else {
                             System.out.println("Warning: That employee does not exist, cannot promote!\n");
