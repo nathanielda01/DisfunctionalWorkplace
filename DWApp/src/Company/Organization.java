@@ -12,11 +12,13 @@ public class Organization {
     static final int VP_MAX = 3;
     static final int SUP_MAX = 5;
     public static final String VACANT = "vacant";
+    private Actions actions;
     private String name;
     private President president;
 
     // Methods
     public Organization() {
+        actions = new Actions(this);
         President president = new President();
         setPresident(president);
     }
@@ -179,6 +181,10 @@ public class Organization {
                 manager.getUnderlings()[i].setName(VACANT);
             }
         }*/
+    }
+
+    public void executeAction(String action) {
+        actions.execute(action);
     }
 }
 

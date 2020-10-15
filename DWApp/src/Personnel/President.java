@@ -10,7 +10,8 @@ public class President extends Employee{
     // Methods
     public President() {
         setName("vacant");
-        underlingCount = 0;
+        setManager(null);
+        this.position = "President";
         for (int i = 0; i < vicePresidents.length; i++) {
             vicePresidents[i] = new VicePresident();
             vicePresidents[i].setManager(this);
@@ -20,24 +21,11 @@ public class President extends Employee{
         setCanHire(true);
         setCanTransfer(true);
         setCanPromote(true);
+        setCanQuit(false);
     }
 
     public VicePresident[] getVPs() {
         return vicePresidents;
-    }
-
-    public void addUnderling(String name) {
-        for (int i = 0; i < vicePresidents.length; i++) {
-            if(vicePresidents[i].name.equals(VACANT)) {
-                vicePresidents[i].name = name;
-                underlingCount++;
-            }
-        }
-    }
-
-    public void deleteUnderling(int index) {
-        underlings[index].name = VACANT;
-        underlingCount--;
     }
 
     public void print() {

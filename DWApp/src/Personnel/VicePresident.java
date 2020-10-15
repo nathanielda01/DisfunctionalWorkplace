@@ -9,8 +9,8 @@ public class VicePresident extends Employee {
 
     // Methods
     public VicePresident() {
-        underlingCount = 0;
         setName(VACANT);
+        this.position = "Vice President";
         for (int i = 0; i < supervisors.length; i++) {
             supervisors[i] = new Supervisor();
             supervisors[i].setManager(this);
@@ -21,6 +21,7 @@ public class VicePresident extends Employee {
         setCanHire(true);
         setCanTransfer(true);
         setCanPromote(true);
+        setCanQuit(true);
     }
 
     public Supervisor[] getSupervisors() {
