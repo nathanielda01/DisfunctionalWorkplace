@@ -94,10 +94,10 @@ public class Driver {
                                 break;
                             }
 
-                            if (!managerRef.getName().equals(organization.VACANT) && managerRef.getCanFire() && beingFired.getManager().getName() == managerRef.getName())
+                            if (!managerRef.getName().equals(organization.VACANT) && managerRef.getCanFire())
                                 organization.fireEmployee(managerRef, beingFired);
                             else {
-                                System.out.println("Warning: Firing manager is not employee's direct manager\n");
+                                System.out.println("Warning: Specified firing manager is not authorized to fire employees.\n");
                                 break;
                             }
                         } else {
