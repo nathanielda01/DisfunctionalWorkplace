@@ -21,8 +21,6 @@ public class Organization {
         setPresident(president);
     }
 
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
     public President getPresident() { return president; }
 
     //Singleton method, can only set president once
@@ -129,25 +127,6 @@ public class Organization {
         }
         return;
 
-        /*for (int i = 0; i < manager.getUnderlings().length; i++) {
-            if (manager.getUnderlings()[i].getName().equals(VACANT)) {
-                switch (manager.getClass().getSimpleName()) {
-                    case "President":
-                        President president = (President) manager;
-                        president.getVPs()[i].setName(empName);
-                        break;
-                    case "VicePresident":
-                        VicePresident vp = (VicePresident) manager;
-                        vp.getSupervisors()[i].setName(empName);
-                        break;
-                    case "Supervisor":
-                        Supervisor supervisor = (Supervisor) manager;
-                        supervisor.getWorkers()[i].setName(empName);
-                        break;
-                }
-                return;
-            }
-        }*/
     }
 
     public void fireEmployee(Employee manager, Employee worker) {
@@ -205,9 +184,6 @@ public class Organization {
     }
 
     public void layoffEmployee(Employee manager, Employee worker) {
-        if (manager.getClass().getSimpleName().equals("President")) {
-            President specificManager = (President) manager;
-        }
 
         switch (worker.getClass().getSimpleName()) {
             case "VicePresident":
