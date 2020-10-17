@@ -125,7 +125,7 @@ public class Driver {
                                 break;
                             }
 
-                            if (!managerRef.getName().equals(organization.VACANT) && quitEmp.getManager().getName() == managerRef.getName()) {
+                            if (!managerRef.getName().equals(organization.VACANT) && quitEmp.getManager().getName().equals(managerRef.getName())) {
                                 organization.quitEmployee(managerRef, quitEmp);
                             } else {
                                 System.out.println("Warning: Direct manager is not quiting employee's manager, failed to quit.\n");
@@ -145,21 +145,21 @@ public class Driver {
                         if (organization.employeeNameExists(layoffInput) && !layoffInput.equals(organization.getPresident().getName())) {
                             Employee layoffEmp = organization.search(layoffInput);
 
-                            System.out.print("Enter direct manager: ");
+                            System.out.print("Enter layoff manager: ");
                             input = (input.replaceAll(input, scanner.nextLine().strip()));
                             System.out.println();
 
                             if (organization.employeeNameExists(input))
                                 managerRef = organization.search(input);
                             else {
-                                System.out.println("Warning: Direct manager does not exist\n");
+                                System.out.println("Warning: Layoff manager does not exist\n");
                                 break;
                             }
 
                             if (!managerRef.getName().equals(organization.VACANT) && managerRef.getCanLayoff()) {
                                 organization.layoffEmployee(managerRef, layoffEmp);
                             } else {
-                                System.out.println("Warning: Direct manager is not employee's manager, failed to layoff.\n");
+                                System.out.println("Warning: Specified layoff manager is not authorized to layoff employees.\n");
                                 break;
                             }
                         } else {

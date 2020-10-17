@@ -25,15 +25,10 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="86c9af80-cacf-47d7-a632-4349d30106dd" name="Default Changelist" comment="Fixed app menu, added break statements in else statements. If statments now all check managerRef's name">
+    <list default="true" id="86c9af80-cacf-47d7-a632-4349d30106dd" name="Default Changelist" comment="Layoff and Quit functionality. Layoff only works with direct workers right now.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DWApp/src/Company/Organization.java" beforeDir="false" afterPath="$PROJECT_DIR$/DWApp/src/Company/Organization.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DWApp/src/Driver.java" beforeDir="false" afterPath="$PROJECT_DIR$/DWApp/src/Driver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DWApp/src/Personnel/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/DWApp/src/Personnel/Employee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DWApp/src/Personnel/President.java" beforeDir="false" afterPath="$PROJECT_DIR$/DWApp/src/Personnel/President.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DWApp/src/Personnel/Supervisor.java" beforeDir="false" afterPath="$PROJECT_DIR$/DWApp/src/Personnel/Supervisor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DWApp/src/Personnel/VicePresident.java" beforeDir="false" afterPath="$PROJECT_DIR$/DWApp/src/Personnel/VicePresident.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DWApp/src/Personnel/Worker.java" beforeDir="false" afterPath="$PROJECT_DIR$/DWApp/src/Personnel/Worker.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,6 +156,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -181,7 +187,7 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="false" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -200,6 +206,7 @@
       <workItem from="1601488082153" duration="1130000" />
       <workItem from="1601504635603" duration="10000" />
       <workItem from="1602626929112" duration="588000" />
+      <workItem from="1602962411182" duration="1271000" />
     </task>
     <task id="LOCAL-00001" summary="First Commit">
       <created>1600279057732</created>
@@ -257,7 +264,14 @@
       <option name="project" value="LOCAL" />
       <updated>1602711772858</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Layoff and Quit functionality. Layoff only works with direct workers right now.">
+      <created>1602719472376</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1602719472376</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -296,7 +310,8 @@
     <MESSAGE value="Checkout commit from origin master" />
     <MESSAGE value="Checkout from local master" />
     <MESSAGE value="Fixed app menu, added break statements in else statements. If statments now all check managerRef's name" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed app menu, added break statements in else statements. If statments now all check managerRef's name" />
+    <MESSAGE value="Layoff and Quit functionality. Layoff only works with direct workers right now." />
+    <option name="LAST_COMMIT_MESSAGE" value="Layoff and Quit functionality. Layoff only works with direct workers right now." />
   </component>
   <component name="WindowStateProjectService">
     <state x="361" y="76" key="#Project_Structure" timestamp="1600990507263">
@@ -319,52 +334,52 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1600807276622" />
-    <state width="1238" height="300" key="GridCell.Tab.0.bottom" timestamp="1602719149891">
+    <state width="1238" height="264" key="GridCell.Tab.0.bottom" timestamp="1602735559647">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="300" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1602719149891" />
+    <state width="1238" height="264" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1602735559647" />
     <state width="1492" height="265" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1602632625840" />
     <state width="916" height="285" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1600985535430" />
-    <state width="1238" height="300" key="GridCell.Tab.0.center" timestamp="1602719149888">
+    <state width="1238" height="264" key="GridCell.Tab.0.center" timestamp="1602735559645">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="300" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1602719149888" />
+    <state width="1238" height="264" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1602735559645" />
     <state width="1492" height="265" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1602632625840" />
     <state width="916" height="285" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1600985535430" />
-    <state width="1238" height="300" key="GridCell.Tab.0.left" timestamp="1602719149888">
+    <state width="1238" height="264" key="GridCell.Tab.0.left" timestamp="1602735559644">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="300" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1602719149888" />
+    <state width="1238" height="264" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1602735559644" />
     <state width="1492" height="265" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1602632625840" />
     <state width="916" height="285" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1600985535430" />
-    <state width="1238" height="300" key="GridCell.Tab.0.right" timestamp="1602719149889">
+    <state width="1238" height="264" key="GridCell.Tab.0.right" timestamp="1602735559646">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="300" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1602719149889" />
+    <state width="1238" height="264" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1602735559646" />
     <state width="1492" height="265" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1602632625840" />
     <state width="916" height="285" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1600985535430" />
-    <state width="1238" height="264" key="GridCell.Tab.1.bottom" timestamp="1602717631246">
+    <state width="1238" height="264" key="GridCell.Tab.1.bottom" timestamp="1602735559649">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="264" key="GridCell.Tab.1.bottom/0.0.1280.800@0.0.1280.800" timestamp="1602717631246" />
+    <state width="1238" height="264" key="GridCell.Tab.1.bottom/0.0.1280.800@0.0.1280.800" timestamp="1602735559649" />
     <state width="1492" height="265" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1602632623547" />
     <state width="916" height="351" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1600985498025" />
-    <state width="1238" height="264" key="GridCell.Tab.1.center" timestamp="1602717631243">
+    <state width="1238" height="264" key="GridCell.Tab.1.center" timestamp="1602735559648">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="264" key="GridCell.Tab.1.center/0.0.1280.800@0.0.1280.800" timestamp="1602717631243" />
+    <state width="1238" height="264" key="GridCell.Tab.1.center/0.0.1280.800@0.0.1280.800" timestamp="1602735559648" />
     <state width="1492" height="265" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1602632623547" />
     <state width="916" height="351" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1600985498025" />
-    <state width="1238" height="264" key="GridCell.Tab.1.left" timestamp="1602717631242">
+    <state width="1238" height="264" key="GridCell.Tab.1.left" timestamp="1602735559647">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="264" key="GridCell.Tab.1.left/0.0.1280.800@0.0.1280.800" timestamp="1602717631242" />
+    <state width="1238" height="264" key="GridCell.Tab.1.left/0.0.1280.800@0.0.1280.800" timestamp="1602735559647" />
     <state width="1492" height="265" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1602632623547" />
     <state width="916" height="351" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1600985498025" />
-    <state width="1238" height="264" key="GridCell.Tab.1.right" timestamp="1602717631244">
+    <state width="1238" height="264" key="GridCell.Tab.1.right" timestamp="1602735559649">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="264" key="GridCell.Tab.1.right/0.0.1280.800@0.0.1280.800" timestamp="1602717631244" />
+    <state width="1238" height="264" key="GridCell.Tab.1.right/0.0.1280.800@0.0.1280.800" timestamp="1602735559649" />
     <state width="1492" height="265" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1602632623547" />
     <state width="916" height="351" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1600985498025" />
     <state width="1492" height="265" key="GridCell.Tab.2.bottom" timestamp="1602632237130">
@@ -395,10 +410,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="2" y="0" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1600297989416" />
-    <state x="301" y="145" key="Vcs.Push.Dialog.v2" timestamp="1602711781208">
+    <state x="301" y="145" key="Vcs.Push.Dialog.v2" timestamp="1602719482503">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="301" y="145" key="Vcs.Push.Dialog.v2/0.0.1280.800@0.0.1280.800" timestamp="1602711781208" />
+    <state x="301" y="145" key="Vcs.Push.Dialog.v2/0.0.1280.800@0.0.1280.800" timestamp="1602719482503" />
     <state x="361" y="151" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1602616859985" />
     <state x="451" y="188" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1600807049517" />
     <state x="93" y="93" width="1350" height="648" key="com.intellij.dvcs.ui.CompareBranchesDialog" timestamp="1602616086240">
@@ -422,16 +437,5 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="209" y="38" key="new project wizard/0.0.1536.834@0.0.1536.834" timestamp="1600297552225" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/DWApp/src/Company/Organization.java</url>
-          <line>208</line>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

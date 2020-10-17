@@ -206,21 +206,35 @@ public class Organization {
     }
 
     public void layoffEmployee(Employee manager, Employee worker) {
+        if (manager.getClass().getSimpleName().equals("President")) {
+            President specificManager = (President) manager;
+        }
+
         switch (worker.getClass().getSimpleName()) {
             case "VicePresident":
-                layoffEmployeeVP((VicePresident) worker);
+                layoffEmployeeVP(manager, (VicePresident) worker);
                 break;
             case "Supervisor":
-                layoffEmployeeSupervisor((VicePresident) manager, (Supervisor) worker);
+                layoffEmployeeSupervisor(manager, (Supervisor) worker);
                 break;
             case "Worker":
-                layoffEmployeeWorker((Supervisor) manager, (Worker) worker);
+                layoffEmployeeWorker(manager, (Worker) worker);
                 break;
         }
         return;
     }
 
-    public void layoffEmployeeWorker(Supervisor manager, Worker worker) {
+    public void layoffEmployeeWorker(Employee layoffManager, Worker worker) {
+        //Check if user specified layoff manager is in hierarchy
+        if (!worker.getManager().getName().equals(layoffManager.getName()) &&
+                !worker.getManager().getManager().getName().equals(layoffManager.getName()) &&
+                        !worker.getManager().getManager().getManager().getName().equals(layoffManager.getName())) {
+            System.out.println("Warning: Layoff manager is not employee's manager or upper management, failed to layoff.\n");
+            return;
+        }
+
+        Supervisor manager = (Supervisor) worker.getManager();
+
         for (int i = 0; i < manager.getWorkers().length; i++) {
             if (manager.getWorkers()[i].getName().equals(VACANT)) {
                 manager.getWorkers()[i].setName(worker.getName());
@@ -261,7 +275,16 @@ public class Organization {
         worker.setName(VACANT);
     }
 
-    public void layoffEmployeeSupervisor(VicePresident manager, Supervisor worker) {
+    public void layoffEmployeeSupervisor(Employee layoffManager, Supervisor worker) {
+        //Check if user specified layoff manager is in hierarchy
+        if (!worker.getManager().getName().equals(layoffManager.getName()) &&
+                !worker.getManager().getManager().getName().equals(layoffManager.getName())) {
+            System.out.println("Warning: Layoff manager is not employee's manager or upper management, failed to layoff.\n");
+            return;
+        }
+
+        VicePresident manager = (VicePresident) worker.getManager();
+
         for (int i = 0; i < manager.getSupervisors().length; i++) {
             if(manager.getSupervisors()[i].getName().equals(VACANT)) {
                 manager.getSupervisors()[i].setName(worker.getName());
@@ -288,7 +311,13 @@ public class Organization {
         worker.setName(VACANT);
     }
 
-    public void layoffEmployeeVP(VicePresident worker) {
+    public void layoffEmployeeVP(Employee layoffManager, VicePresident worker) {
+        //Check if user specified layoff manager is in hierarchy
+        if (!worker.getManager().getName().equals(layoffManager.getName())) {
+            System.out.println("Warning: Layoff manager is not employee's manager or upper management, failed to layoff.\n");
+            return;
+        }
+
         for (int i = 0; i < president.getVPs().length; i++) {
             if (president.getVPs()[i].getName().equals(VACANT)) {
                 president.getVPs()[i].setName(worker.getName());
