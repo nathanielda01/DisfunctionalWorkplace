@@ -4,7 +4,6 @@ package Personnel;
 public abstract class Employee {
     // Variables
     protected String name;
-    protected int underlingCount;
     protected Employee manager;
     protected boolean canFire;
     protected boolean canHire;
@@ -13,6 +12,7 @@ public abstract class Employee {
     protected boolean canQuit;
     protected boolean canPromote;
     protected boolean isPromotable;
+    protected String position;
     static final String VACANT = "vacant";
 
     // Methods
@@ -26,7 +26,6 @@ public abstract class Employee {
     public void setManager(Employee manager) {
         this.manager = manager;
     }
-
 
     public boolean isEmpty() {
         if (name.equals(VACANT)) {
@@ -61,5 +60,9 @@ public abstract class Employee {
     public void setCanBePromoted(boolean isPromotable) { this.isPromotable = isPromotable; }
     public boolean getCanBePromoted() {
         return isPromotable;
+    }
+
+    public String getPosition() {
+        return position;
     }
 }

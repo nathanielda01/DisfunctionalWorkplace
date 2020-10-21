@@ -9,8 +9,8 @@ public class Supervisor extends Employee {
 
     // Methods
     public Supervisor() {
-        underlingCount = 0;
         setName(VACANT);
+        this.position = "Supervisor";
         for (int i = 0; i < workers.length; i++) {
             workers[i] = new Worker();
             workers[i].setManager(this);
@@ -19,12 +19,23 @@ public class Supervisor extends Employee {
         setCanHire(true);
         setCanFire(true);
         setCanPromote(false);
+        setCanBePromoted(true);
         setCanTransfer(false);
         setCanLayoff(true);
+        setCanQuit(true);
     }
 
     public Worker[] getWorkers() {
         return workers;
+    }
+
+    public boolean contains(String name) {
+        for (int i = 0; i < workers.length; i++) {
+            if (workers[i].getName().equals(name)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void print() {

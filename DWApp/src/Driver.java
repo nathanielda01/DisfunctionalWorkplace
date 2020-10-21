@@ -1,3 +1,4 @@
+import Company.Actions;
 import Company.Organization;
 import Personnel.*;
 
@@ -8,6 +9,7 @@ import java.util.Scanner;
 public class Driver {
 
     static Organization organization;
+    static Actions actions;
     static Employee managerRef;
 
     public static void main(String[] args) {
@@ -29,6 +31,7 @@ public class Driver {
 
         try {
             while (!input.equals("Exit")) {
+                sleep(1000);
                 System.out.println("***Company Actions***");
                 System.out.println("To hire someone type: \"Hire\"");
                 System.out.println("To fire someone type: \"Fire\"");
@@ -114,7 +117,7 @@ public class Driver {
                         if (organization.employeeNameExists(quitInput) && !quitInput.equals(organization.getPresident().getName())) {
                             Employee quitEmp = organization.search(quitInput);
 
-                            System.out.print("Enter direct manager: ");
+                            /*System.out.print("Enter direct manager: ");
                             input = (input.replaceAll(input, scanner.nextLine().strip()));
                             System.out.println();
 
@@ -123,13 +126,22 @@ public class Driver {
                             else {
                                 System.out.println("Warning: Direct manager does not exist\n");
                                 break;
-                            }
+                            }*/
 
-                            if (!managerRef.getName().equals(organization.VACANT) && quitEmp.getManager().getName().equals(managerRef.getName())) {
-                                organization.quitEmployee(managerRef, quitEmp);
-                            } else {
-                                System.out.println("Warning: Direct manager is not quiting employee's manager, failed to quit.\n");
-                                break;
+
+                            if (quitEmp.getCanQuit()) {
+                                quitEmp.setName(Organization.VACANT);
+                            }
+                            else {
+                                System.out.print("Unfortunately, President " + organization.getPresident().getName() +
+                                        " cannot quit. They will stay here.");
+                                sleep(1000);
+                                System.out.print(" . ");
+                                sleep(1000);
+                                System.out.print(" . ");
+                                sleep(1000);
+                                System.out.print("forever.");
+                                System.out.println();
                             }
                         } else {
                             if (quitInput.equals(organization.getPresident().getName()))
@@ -170,70 +182,10 @@ public class Driver {
                         }
                         break;
                     case "Transfer":
-                        System.out.print("Enter employee's name being transferred: ");
-                        transferInput = (transferInput.replaceAll(transferInput, scanner.nextLine().strip()));
-                        System.out.println();
-                        if (organization.employeeNameExists(transferInput) && !transferInput.equals(organization.getPresident().getName())) {
-                            Employee transferEmp = organization.search(transferInput);
-
-                            System.out.print("Enter transferring manager: ");
-                            input = (input.replaceAll(input, scanner.nextLine().strip()));
-                            System.out.println();
-
-                            if (organization.employeeNameExists(input))
-                                managerRef = organization.search(input);
-                            else {
-                                System.out.println("Warning: Transferring manager does not exist.\n");
-                                break;
-                            }
-
-                            if (!managerRef.getName().equals(organization.VACANT) && managerRef.getCanTransfer()) {
-                                // TODO check if transfer employee is in manager's heiarchy
-                                // TODO transfer employee
-                            } else {
-                                System.out.println("Warning: Transferring manager cannot transfer employees.\n");
-                                break;
-                            }
-
-                        } else {
-                            if (transferInput.equals(organization.getPresident().getName()))
-                                System.out.println("Warning: The president cannot be transferred!\n");
-                            else
-                                System.out.println("Warning: That employee does not exist, cannot be transferred!\n");
-                        }
+                        organization.executeAction(input);
                         break;
                     case "Promote":
-                        System.out.print("Enter employee's name being promoted: ");
-                        promoteInput = (promoteInput.replaceAll(promoteInput, scanner.nextLine().strip()));
-                        System.out.println();
-                        if (organization.employeeNameExists(promoteInput) ) { //TODO add function logic that checks if employee is president or vp
-                            Employee promoteEmp = organization.search(promoteInput);
-
-                            System.out.print("Enter promoting manager: ");
-                            input = (input.replaceAll(input, scanner.nextLine().strip()));
-                            System.out.println();
-
-                            if (organization.employeeNameExists(input))
-                                managerRef = organization.search(input);
-                            else {
-                                System.out.println("Warning: Promoting manager does not exist.\n");
-                                break;
-                            }
-
-                            if (!managerRef.getName().equals(organization.VACANT) && managerRef.getCanPromote()) {
-                                // TODO check promoting managers level and employee to be promoted level
-                                // TODO promote employee
-                            } else {
-                                System.out.println("Warning: Promoting manager cannot promote employee.\n");
-                                break;
-                            }
-
-                        } else {
-                            if (promoteInput.equals(organization.getPresident().getName())) //TODO check if input is president or vp
-                                System.out.println("Warning: The president or vice presidents cannot be promoted!\n");
-                            else
-                                System.out.println("Warning: That employee does not exist, cannot be promoted!\n");
-                        }
+                        organization.executeAction(input);
                         break;
                     case "Print":
                         organization.printOrganization();
@@ -242,6 +194,16 @@ public class Driver {
             }
         } catch (Exception e) {
             System.out.println(e.getLocalizedMessage());
+        }
+    }
+
+    public static void sleep(long time) {
+        try {
+            Thread.sleep(time);
+        }
+        catch(InterruptedException ex)
+        {
+            Thread.currentThread().interrupt();
         }
     }
 }
