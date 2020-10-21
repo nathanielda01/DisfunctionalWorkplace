@@ -105,7 +105,7 @@ public class Actions {
                             if (!vpRef.getSupervisors()[i].contains(promoteWorker.getName())) {
                                 vpRef.getSupervisors()[i].setName(promoteWorker.getName());
                                 promoteWorker.setName(Organization.VACANT);
-                                break;
+                                return;
                             }
                         }
                     }

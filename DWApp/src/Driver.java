@@ -66,10 +66,10 @@ public class Driver {
                                 break;
                             }
 
-                            if (!managerRef.getName().equals(organization.VACANT) && managerRef.getCanHire()) {
+                            if (!managerRef.getName().equals(Organization.VACANT) && managerRef.getCanHire()) {
                                 organization.fillVacancy(managerRef, hireInput);
                             } else {
-                                //TODO print here or in fill vacancy if there is no space?
+                                System.out.println("Warning: Hiring manager cannot hire anyone!");
                                 break;
                             }
 
@@ -117,22 +117,12 @@ public class Driver {
                         if (organization.employeeNameExists(quitInput) && !quitInput.equals(organization.getPresident().getName())) {
                             Employee quitEmp = organization.search(quitInput);
 
-                            /*System.out.print("Enter direct manager: ");
-                            input = (input.replaceAll(input, scanner.nextLine().strip()));
-                            System.out.println();
-
-                            if (organization.employeeNameExists(input))
-                                managerRef = organization.search(input);
-                            else {
-                                System.out.println("Warning: Direct manager does not exist\n");
-                                break;
-                            }*/
-
-
                             if (quitEmp.getCanQuit()) {
                                 quitEmp.setName(Organization.VACANT);
                             }
-                            else {
+
+                        } else {
+                            if (quitInput.equals(organization.getPresident().getName())) {
                                 System.out.print("Unfortunately, President " + organization.getPresident().getName() +
                                         " cannot quit. They will stay here.");
                                 sleep(1000);
@@ -141,11 +131,8 @@ public class Driver {
                                 System.out.print(" . ");
                                 sleep(1000);
                                 System.out.print("forever.");
-                                System.out.println();
+                                System.out.println("\n");
                             }
-                        } else {
-                            if (quitInput.equals(organization.getPresident().getName()))
-                                System.out.println("Warning: The president cannot quit!\n");
                             else
                                 System.out.println("Warning: That employee does not exist, cannot quit!\n");
                         }

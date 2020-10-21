@@ -110,21 +110,33 @@ public class Organization {
         switch (manager.getClass().getSimpleName()) {
             case "President":
                 President president = (President) manager;
-                for(int i = 0; i < president.getVPs().length; i++)
-                    if (president.getVPs()[i].getName().equals(VACANT))
+                for (int i = 0; i < president.getVPs().length; i++) {
+                    if (president.getVPs()[i].getName().equals(VACANT)) {
                         president.getVPs()[i].setName(empName);
+                        return;
+                    }
+                }
+                System.out.println("Warning: No vacancy under " + president.getName() + "\n");
                 break;
             case "VicePresident":
                 VicePresident vp = (VicePresident) manager;
-                for(int i = 0; i < vp.getSupervisors().length; i++)
-                    if(vp.getSupervisors()[i].getName().equals(VACANT))
+                for (int i = 0; i < vp.getSupervisors().length; i++) {
+                    if (vp.getSupervisors()[i].getName().equals(VACANT)) {
                         vp.getSupervisors()[i].setName(empName);
+                        return;
+                    }
+                }
+                System.out.println("Warning: No vacancy under " + vp.getName() + "\n");
                 break;
             case "Supervisor":
                 Supervisor supervisor = (Supervisor) manager;
-                for(int i = 0; i < supervisor.getWorkers().length; i++)
-                    if(supervisor.getWorkers()[i].getName().equals(VACANT))
+                for(int i = 0; i < supervisor.getWorkers().length; i++) {
+                    if(supervisor.getWorkers()[i].getName().equals(VACANT)) {
                         supervisor.getWorkers()[i].setName(empName);
+                        return;
+                    }
+                }
+                System.out.println("Warning: No vacancy under " + supervisor.getName() + "\n");
                 break;
         }
         return;
