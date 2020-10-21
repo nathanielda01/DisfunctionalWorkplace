@@ -21,6 +21,7 @@ public class President extends Employee{
         setCanHire(true);
         setCanTransfer(true);
         setCanPromote(true);
+        setCanBePromoted(false);
         setCanQuit(false);
     }
 

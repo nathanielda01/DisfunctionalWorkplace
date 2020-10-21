@@ -21,6 +21,7 @@ public class VicePresident extends Employee {
         setCanHire(true);
         setCanTransfer(true);
         setCanPromote(true);
+        setCanBePromoted(false);
         setCanQuit(true);
     }
 
@@ -34,5 +35,19 @@ public class VicePresident extends Employee {
         for (Supervisor supervisor: supervisors) {
             supervisor.print();
         }
+    }
+
+    public boolean contains(String name) {
+        for (int i = 0; i < getSupervisors().length; i++) {
+            if (getSupervisors()[i].getName().equals(name)) {
+                return true;
+            }
+            for (int j = 0; j < getSupervisors()[i].getWorkers().length; j++) {
+                if (getSupervisors()[i].getWorkers()[j].getName().equals(name)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }
