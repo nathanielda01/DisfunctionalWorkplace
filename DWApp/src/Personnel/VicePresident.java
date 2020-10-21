@@ -21,6 +21,7 @@ public class VicePresident extends Employee {
         setCanHire(true);
         setCanTransfer(true);
         setCanPromote(true);
+        setCanLayoff(true);
         setCanBePromoted(false);
         setCanQuit(true);
     }

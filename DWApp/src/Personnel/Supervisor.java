@@ -21,6 +21,7 @@ public class Supervisor extends Employee {
         setCanPromote(false);
         setCanBePromoted(true);
         setCanTransfer(false);
+        setCanLayoff(true);
         setCanQuit(true);
     }
 

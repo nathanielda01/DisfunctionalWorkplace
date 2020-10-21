@@ -58,7 +58,7 @@ public abstract class Employee {
     public void setCanPromote(boolean canPromote) { this.canPromote = canPromote; }
     public boolean getCanPromote() {return canPromote;}
     public void setCanBePromoted(boolean isPromotable) { this.isPromotable = isPromotable; }
-    public boolean getCanBePromotable() {
+    public boolean getCanBePromoted() {
         return isPromotable;
     }
 
