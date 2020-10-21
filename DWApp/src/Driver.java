@@ -1,6 +1,6 @@
 import Company.Actions;
 import Company.Organization;
-import Personnel.Employee;
+import Personnel.*;
 
 import java.util.Scanner;
 
@@ -176,34 +176,93 @@ public class Driver {
                         organization.executeAction(input);
                         break;
                     case "Promote":
+                        organization.executeAction(input);
+                        break;
+                        /*Employee promoteEmp;
+
                         System.out.print("Enter employee's name being promoted: ");
                         promoteInput = (promoteInput.replaceAll(promoteInput, scanner.nextLine().strip()));
                         System.out.println();
                         if (organization.employeeNameExists(promoteInput)) {
-                            Employee promoteEmp = organization.search(promoteInput);
-
-                            System.out.print("Enter promoting manager: ");
-                            input = (input.replaceAll(input, scanner.nextLine().strip()));
-                            System.out.println();
-
-                            if (organization.employeeNameExists(input))
-                                managerRef = organization.search(input);
-                            else {
-                                System.out.println("Warning: Promoting manager does not exist.\n");
-                                break;
-                            }
-
-                            if (!managerRef.getName().equals(organization.VACANT) && managerRef.getCanPromote()) {
-                                // TODO check promoting managers level and employee to be promoted level
-                                // TODO promote employee
-                            } else {
-                                System.out.println("Warning: Promoting manager cannot promote employee.\n");
-                                break;
-                            }
+                            promoteEmp = organization.search(promoteInput);
                         } else {
                             System.out.println("Warning: That employee does not exist, cannot promote!\n");
+                            break;
                         }
-                        break;
+
+                        System.out.print("Enter promoting manager: ");
+                        input = (input.replaceAll(input, scanner.nextLine().strip()));
+                        System.out.println();
+
+                        if (organization.employeeNameExists(input))
+                            managerRef = organization.search(input);
+                        else {
+                            System.out.println("Warning: Promoting manager does not exist.\n");
+                            break;
+                        }
+
+//                      President --Promotes--> Supervisors
+//                      Vice President --Promotes--> Workers
+
+                        Supervisor promoteSupervisor;
+                        Worker promoteWorker;
+                        if (managerRef.getCanPromote()) {
+
+                            switch (managerRef.getPosition()) {
+                                case "President":
+                                    President presRef = (President)managerRef;
+                                    try {
+                                        promoteSupervisor = (Supervisor)promoteEmp;
+                                    }
+                                    catch (Exception e) {
+                                        System.out.println(e + ": employee level is not acceptable for a President to" +
+                                                " promote as the President will not become the direct manager of the promoted");
+                                        break;
+                                    }
+                                    for (VicePresident vp : presRef.getVPs()) {
+                                        if (vp.getName().equals(Organization.VACANT)) {
+                                            if (!vp.contains(promoteSupervisor.getName())) {
+                                                vp.setName(promoteSupervisor.getName());
+                                                promoteSupervisor.setName(Organization.VACANT);
+                                            }
+                                            else {
+                                                System.out.println("Error: " + promoteSupervisor.getName() + " is in " +
+                                                        "the same branch as the Vice President position, and is " +
+                                                        "therefore unable to be promoted.");
+                                            }
+                                            break;
+                                        }
+                                    }
+                                    break;
+                                case "Vice President":
+                                    VicePresident vpRef = (VicePresident)managerRef;
+                                    try {
+                                        promoteWorker = (Worker)promoteEmp;
+                                    }
+                                    catch (Exception e) {
+                                        System.out.println(e + ": employee level is not acceptable for a Vice President to" +
+                                                " promote as the Vice President will not become the direct manager of the promoted");
+                                        break;
+                                    }
+
+                                    for (int i = 0; i < vpRef.getSupervisors().length; i++) {
+                                        if (vpRef.getSupervisors()[i].getName().equals(Organization.VACANT)) {
+                                            if (!vpRef.getSupervisors()[i].contains(promoteWorker.getName())) {
+                                                vpRef.getSupervisors()[i].setName(promoteWorker.getName());
+                                                promoteWorker.setName(Organization.VACANT);
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    System.out.println("No supervisor slots available in " + vpRef.getName() + "'s branch.");
+                            }
+
+                        } else {
+                            System.out.println("Warning: Promoting manager cannot promote employee.\n");
+                            break;
+                        }
+
+                        break;*/
                     case "Print":
                         organization.printOrganization();
                         break;

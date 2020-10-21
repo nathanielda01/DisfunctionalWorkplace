@@ -13,6 +13,7 @@ public class Worker extends Employee {
         setCanHire(false);
         setCanFire(false);
         setCanPromote(false);
+        setCanBePromoted(true);
         setCanTransfer(false);
         setCanQuit(true);
     }

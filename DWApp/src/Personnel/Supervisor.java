@@ -19,12 +19,22 @@ public class Supervisor extends Employee {
         setCanHire(true);
         setCanFire(true);
         setCanPromote(false);
+        setCanBePromoted(true);
         setCanTransfer(false);
         setCanQuit(true);
     }
 
     public Worker[] getWorkers() {
         return workers;
+    }
+
+    public boolean contains(String name) {
+        for (int i = 0; i < workers.length; i++) {
+            if (workers[i].getName().equals(name)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void print() {
