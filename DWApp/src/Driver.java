@@ -31,7 +31,7 @@ public class Driver {
 
         try {
             while (!input.equals("Exit")) {
-                sleep(1000);
+                sleep(500);
                 System.out.println("***Company Actions***");
                 System.out.println("To hire someone type: \"Hire\"");
                 System.out.println("To fire someone type: \"Fire\"");
@@ -43,6 +43,7 @@ public class Driver {
                 System.out.println("To quit the application type: \"Exit\"");
                 System.out.print("Input: ");
                 input = (input.replaceAll(input, scanner.nextLine().strip()));
+
                 System.out.println();
 
                 switch (input) {
@@ -126,7 +127,7 @@ public class Driver {
                                 System.out.print("Unfortunately, President " + organization.getPresident().getName() +
                                         " cannot quit. They will stay here.");
                                 sleep(1000);
-                                System.out.print(" . ");
+                                System.out.print(" .");
                                 sleep(1000);
                                 System.out.print(" . ");
                                 sleep(1000);
