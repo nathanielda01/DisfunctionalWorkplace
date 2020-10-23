@@ -38,7 +38,19 @@ public class Supervisor extends Employee {
         return false;
     }
 
+    public boolean empty() {
+        for (int i = 0; i < workers.length; i++) {
+            if (!workers[i].getName().equals(VACANT)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public void print() {
+        if (name.equals(VACANT) && this.empty()) {
+            return;
+        }
         System.out.println("\t\tSupervisor: " + getName());
 
         for (Worker worker : workers) {

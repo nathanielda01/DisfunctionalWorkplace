@@ -1,11 +1,11 @@
 package Company;
+
 import Personnel.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-// TODO
 public class Organization {
     // Variables
     static final int PRES_MAX = 2;
@@ -25,8 +25,7 @@ public class Organization {
 
     public President getPresident() { return president; }
 
-    //Singleton method, can only set president once
-    public void setPresident(President president) {
+    private void setPresident(President president) {
         if (this.president == null) {
             this.president = president;
         }

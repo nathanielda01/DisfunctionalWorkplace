@@ -30,7 +30,19 @@ public class VicePresident extends Employee {
         return supervisors;
     }
 
+    public boolean empty() {
+        for (int i = 0; i < supervisors.length; i++) {
+            if (!supervisors[i].getName().equals(VACANT) && !supervisors[i].empty()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public void print() {
+        if (name.equals(VACANT) && this.empty()) {
+            return;
+        }
         System.out.println("\tVice President: " + getName());
 
         for (Supervisor supervisor: supervisors) {
