@@ -9,13 +9,14 @@ public class Worker extends Employee {
     public Worker() {
         setName(VACANT);
         this.position = "Worker";
-        setCanHire(false);
-        setCanFire(false);
-        setCanPromote(false);
-        setCanBePromoted(true);
-        setCanTransfer(false);
-        setCanQuit(true);
-        setCanLayoff(false);
+
+        canFire = false;
+        canHire = false;
+        canTransfer = false;
+        canPromote = false;
+        canLayoff = false;
+        isPromotable = true;
+        canQuit = true;
     }
 
     public void print() {

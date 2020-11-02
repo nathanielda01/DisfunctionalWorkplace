@@ -110,7 +110,7 @@ public class WorkerTests {
 //    }
 
     //Manager tests
-    @Test
+    /*@Test
     public void workerSetManager() {
         Worker.setManager(Supervisor);
         assertEquals(Supervisor, Worker.getManager());
@@ -131,7 +131,7 @@ public class WorkerTests {
     }
 
     //Getters and setters toggling
-    @Test
+    /*@Test
     public void workerCanFire() {
         assertFalse(Worker.getCanFire());
         Worker.setCanFire(true);
@@ -172,7 +172,7 @@ public class WorkerTests {
         Worker.setCanBePromoted(false);
         assertFalse(Worker.getCanBePromoted());
     }
-
+*/
     @Test
     public void workerPosition() {
         assertEquals("Worker", Worker.getPosition());

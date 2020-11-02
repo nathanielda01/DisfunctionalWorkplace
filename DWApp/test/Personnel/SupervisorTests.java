@@ -186,7 +186,7 @@ public class SupervisorTests {
     }
 
     //Manager tests
-    @Test
+    /*@Test
     public void supervisorSetManager() {
         Supervisor.setManager(Vice);
         assertEquals(Vice, Supervisor.getManager());
@@ -234,7 +234,7 @@ public class SupervisorTests {
     }
 
     //Getters and setters toggling
-    @Test
+    /*@Test
     public void supervisorCanFire() {
         assertTrue(Supervisor.getCanFire());
 
@@ -287,7 +287,7 @@ public class SupervisorTests {
         Supervisor.setCanBePromoted(false);
         assertFalse(Supervisor.getCanBePromoted());
     }
-
+*/
     @Test
     public void supervisorPosition() {
         assertEquals("Supervisor", Supervisor.getPosition());

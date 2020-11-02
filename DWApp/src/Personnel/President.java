@@ -1,6 +1,5 @@
 package Personnel;
 
-// TODO
 public class President extends Employee{
     // Variables
     public final static int MAX_UNDER = 2;
@@ -10,20 +9,21 @@ public class President extends Employee{
     // Methods
     public President() {
         setName("vacant");
-        setManager(null);
+        this.manager = null;
         this.position = "President";
         for (int i = 0; i < vicePresidents.length; i++) {
             vicePresidents[i] = new VicePresident();
-            vicePresidents[i].setManager(this);
+            vicePresidents[i].manager = this;
             vicePresidents[i].setName(VACANT);
         }
-        setCanFire(true);
-        setCanHire(true);
-        setCanTransfer(true);
-        setCanPromote(true);
-        setCanLayoff(true);
-        setCanBePromoted(false);
-        setCanQuit(false);
+
+        canFire = true;
+        canHire = true;
+        canTransfer = true;
+        canPromote = true;
+        canLayoff = true;
+        isPromotable = false;
+        canQuit = false;
     }
 
     public VicePresident[] getVPs() {

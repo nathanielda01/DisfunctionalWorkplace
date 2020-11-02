@@ -226,7 +226,7 @@ public class VicePresidentTests {
     }
 
     //Manager tests
-    @Test
+    /*@Test
     public void vicePresidentSetManager() {
         VicePresident.setManager(President);
         assertEquals(President, VicePresident.getManager());
@@ -274,7 +274,7 @@ public class VicePresidentTests {
     }
 
     //Getters and setters toggling
-    @Test
+    /*@Test
     public void vicePresidentCanFire() {
         assertTrue(VicePresident.getCanFire());
 
@@ -327,7 +327,7 @@ public class VicePresidentTests {
         VicePresident.setCanBePromoted(true);
         assertTrue(VicePresident.getCanBePromoted());
     }
-
+*/
     @Test
     public void vicePresidentPosition() {
         assertEquals("Vice President", VicePresident.getPosition());
