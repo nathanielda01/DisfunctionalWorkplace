@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+// Organization class
 public class Organization {
     // Variables
     static final int PRES_MAX = 2;
