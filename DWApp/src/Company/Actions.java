@@ -9,6 +9,8 @@ public class Actions {
     private Organization organization;
     private Employee managerRef;
     private String input = "";
+    private String employeeInput = "";
+    private String managerInput = "";
     private String hireInput = "";
     private String fireInput = "";
     private String quitInput = "";
@@ -24,15 +26,143 @@ public class Actions {
 
     public void execute(String action) {
         switch (action) {
+            case "Hire":
+                hire();
+                break;
+            case "Fire":
+                fire();
+                break;
+            case "Quit":
+                quit();
+                break;
+            case "Layoff":
+                layoff();
+                break;
             case "Transfer":
                 transfer();
                 break;
             case "Promote":
                 promote();
                 break;
+            case "Print":
+                organization.printOrganization();
+                break;
             default:
                 System.out.println(action + " is not a valid action.");
+                break;
         }
+    }
+
+    private void layoff() {
+        promptForNames();
+
+        if (organization.employeeNameExists(employeeInput) && !employeeInput.equals(organization.getPresident().getName())) {
+            Employee layoffEmp = organization.search(employeeInput);
+
+            if (organization.employeeNameExists(managerInput))
+                managerRef = organization.search(managerInput);
+            else {
+                System.out.println("Warning: Layoff manager does not exist\n");
+                return;
+            }
+
+            if (!managerRef.getName().equals(organization.VACANT) && managerRef.getCanLayoff()) {
+                organization.layoffEmployee(managerRef, layoffEmp);
+            } else {
+                System.out.println("Warning: Specified layoff manager is not authorized to layoff employees.\n");
+                return;
+            }
+        } else {
+            if (layoffInput.equals(organization.getPresident().getName()))
+                System.out.println("Warning: The president cannot be laid off!\n");
+            else
+                System.out.println("Warning: That employee does not exist, cannot be laid off!\n");
+        }
+        return;
+    }
+
+    private void quit() {
+        System.out.print("Enter employee's name quiting: ");
+        quitInput = (quitInput.replaceAll(quitInput, scanner.nextLine().strip()));
+        quitInput = quitInput.replaceAll("[^a-zA-Z]+", "");
+        if (organization.employeeNameExists(quitInput) && !quitInput.equals(organization.getPresident().getName())) {
+            Employee quitEmp = organization.search(quitInput);
+
+            if (quitEmp.getCanQuit()) {
+                quitEmp.setName(Organization.VACANT);
+            }
+
+        } else {
+            if (quitInput.equals(organization.getPresident().getName())) {
+                System.out.print("Unfortunately, President " + organization.getPresident().getName() +
+                        " cannot quit. They will stay here.");
+                sleep(1000);
+                System.out.print(" .");
+                sleep(1000);
+                System.out.print(" . ");
+                sleep(1000);
+                System.out.print("forever.");
+                System.out.println("\n");
+            }
+            else
+                System.out.println("Warning: That employee does not exist, cannot quit!\n");
+        }
+        return;
+    }
+
+    private void fire() {
+        promptForNames();
+
+        if (organization.employeeNameExists(employeeInput) && !employeeInput.equals(organization.getPresident().getName())) {
+
+            Employee beingFired = organization.search(employeeInput);
+
+            if (organization.employeeNameExists(managerInput))
+                managerRef = organization.search(managerInput);
+            else {
+                System.out.println("Warning: Firing manager does not exist");
+                return;
+            }
+
+            if (!managerRef.getName().equals(organization.VACANT) && managerRef.getCanFire())
+                organization.fireEmployee(managerRef, beingFired);
+            else {
+                System.out.println("Warning: Specified firing manager is not authorized to fire employees.\n");
+                return;
+            }
+        } else {
+            if (employeeInput.equals(organization.getPresident().getName()))
+                System.out.println("Warning: The president cannot be fired!\n");
+            else
+                System.out.println("Warning: That employee does not exist, cannot quit!\n");
+        }
+        return;
+    }
+
+    private void hire() {
+        promptForNames();
+
+        if (!organization.employeeNameExists(employeeInput)) {
+
+            if (organization.employeeNameExists(managerInput)) {
+                managerRef = organization.search(managerInput);
+            } else {
+                System.out.println("Warning: Hiring manager does not exist");
+                return;
+            }
+
+            if (!managerRef.getName().equals(Organization.VACANT) && managerRef.getCanHire()) {
+                organization.fillVacancy(managerRef, employeeInput);
+            } else {
+                System.out.println("Warning: Hiring manager cannot hire anyone!");
+                return;
+            }
+
+        } else {
+            System.out.println("Warning: That employee already exists, cannot hire!\n");
+            return;
+        }
+        return;
     }
 
     private void promote() {
@@ -40,22 +170,17 @@ public class Actions {
         Supervisor promoteSupervisor;
         Worker promoteWorker;
 
-        System.out.print("Enter employee's name being promoted: ");
-        promoteInput = (promoteInput.replaceAll(promoteInput, scanner.nextLine().strip()));
-        System.out.println();
-        if (organization.employeeNameExists(promoteInput)) {
-            promoteEmp = organization.search(promoteInput);
+        promptForNames();
+
+        if (organization.employeeNameExists(employeeInput)) {
+            promoteEmp = organization.search(employeeInput);
         } else {
             System.out.println("Warning: That employee does not exist, cannot promote!\n");
             return;
         }
 
-        System.out.print("Enter promoting manager: ");
-        input = (input.replaceAll(input, scanner.nextLine().strip()));
-        System.out.println();
-
-        if (organization.employeeNameExists(input))
-            managerRef = organization.search(input);
+        if (organization.employeeNameExists(managerInput))
+            managerRef = organization.search(managerInput);
         else {
             System.out.println("Warning: Promoting manager does not exist.\n");
             return;
@@ -121,42 +246,29 @@ public class Actions {
     }
 
     private void transfer() {
-        System.out.print("Enter employee's name being transferred: ");
-        transferInput = (transferInput.replaceAll(transferInput, scanner.nextLine().strip()));
-        System.out.println();
-        if (organization.employeeNameExists(transferInput)) {
-            Employee transferEmp = organization.search(transferInput);
+        promptForNames();
 
-            System.out.print("Enter transferring manager: ");
-            input = (input.replaceAll(input, scanner.nextLine().strip()));
-            System.out.println("\nVerifying...");
+        if (organization.employeeNameExists(employeeInput)) {
+            Employee transferEmp = organization.search(employeeInput);
 
-            if (organization.employeeNameExists(input)) {
-                System.out.println("Employee found as:");
-                managerRef = organization.search(input);
-                System.out.println("Name: " + managerRef.getName() + " Position: " + managerRef.getPosition());
+            if (organization.employeeNameExists(managerInput)) {
+                managerRef = organization.search(managerInput);
             }
             else {
                 System.out.println("Warning: Transferring manager does not exist.\n");
                 return;
             }
 
-            if (managerRef.getCanTransfer()) {
-                System.out.println(managerRef.getName() + " has the power to transfer employees.");
-            }
-            else {
+            if (!managerRef.getCanTransfer()) {
                 System.out.println(managerRef.getName() + " does not have the power to transfer employees.");
                 return;
             }
 
             switch (managerRef.getPosition()) {
                 case "President":
-                    System.out.println("Searching for vacancies...");
                     while (organization.search(Organization.VACANT) != null) {
                         Employee vacancy = organization.search(Organization.VACANT);
-                        System.out.println("Vacancy found.");
                         if (vacancy.getPosition().equals(transferEmp.getPosition())) {
-                            System.out.println("Initiating transfer...");
                             vacancy.setName(transferEmp.getName());
                             transferEmp.setName(Organization.VACANT);
                             System.out.println("Transfer complete: " + vacancy.getName() +
@@ -209,5 +321,24 @@ public class Actions {
             System.out.println("Warning: That employee does not exist, cannot transfer!\n");
         }
         return;
+    }
+
+    private void promptForNames() {
+        System.out.print("Enter employee's name: ");
+        employeeInput = (layoffInput.replaceAll(layoffInput, scanner.nextLine().strip()));
+        employeeInput = employeeInput.replaceAll("[^a-zA-Z]+", "");
+        System.out.print("Enter manager's name: ");
+        managerInput = (input.replaceAll(input, scanner.nextLine().strip()));
+        managerInput = managerInput.replaceAll("[^a-zA-Z]+", "");
+    }
+
+    public static void sleep(long time) {
+        try {
+            Thread.sleep(time);
+        }
+        catch(InterruptedException ex)
+        {
+            Thread.currentThread().interrupt();
+        }
     }
 }

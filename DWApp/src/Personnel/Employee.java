@@ -1,6 +1,5 @@
 package Personnel;
 
-// TODO
 public abstract class Employee {
     // Variables
     protected String name;
@@ -46,19 +45,11 @@ public abstract class Employee {
 
     public boolean getCanFire() { return canFire; }
     public boolean getCanHire() { return canHire; }
-    public boolean getCanLayoff() {
-        return canLayoff;
-    }
+    public boolean getCanLayoff() { return canLayoff; }
     public boolean getCanTransfer() { return  canTransfer; }
-    public boolean getCanQuit() {
-        return canQuit;
-    }
+    public boolean getCanQuit() { return canQuit; }
     public boolean getCanPromote() {return canPromote;}
-    public boolean getCanBePromoted() {
-        return isPromotable;
-    }
+    public boolean getCanBePromoted() { return isPromotable; }
 
-    public String getPosition() {
-        return position;
-    }
+    public String getPosition() { return position; }
 }
