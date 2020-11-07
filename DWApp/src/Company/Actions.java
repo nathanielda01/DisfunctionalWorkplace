@@ -48,7 +48,7 @@ public class Actions {
                 organization.printOrganization();
                 break;
             default:
-                System.out.println(action + " is not a valid action.");
+                System.out.println(action + " is not a valid action.\n");
                 break;
         }
     }
@@ -82,7 +82,7 @@ public class Actions {
     }
 
     private void quit() {
-        System.out.print("Enter employee's name quiting: ");
+        System.out.print("Enter quiting employee's name: ");
         quitInput = (quitInput.replaceAll(quitInput, scanner.nextLine().strip()));
         quitInput = quitInput.replaceAll("[^a-zA-Z]+", "");
         if (organization.employeeNameExists(quitInput) && !quitInput.equals(organization.getPresident().getName())) {
@@ -120,7 +120,7 @@ public class Actions {
             if (organization.employeeNameExists(managerInput))
                 managerRef = organization.search(managerInput);
             else {
-                System.out.println("Warning: Firing manager does not exist");
+                System.out.println("Warning: Firing manager does not exist\n");
                 return;
             }
 
@@ -134,7 +134,7 @@ public class Actions {
             if (employeeInput.equals(organization.getPresident().getName()))
                 System.out.println("Warning: The president cannot be fired!\n");
             else
-                System.out.println("Warning: That employee does not exist, cannot quit!\n");
+                System.out.println("Warning: That employee does not exist, cannot fire!\n");
         }
         return;
     }
@@ -147,14 +147,14 @@ public class Actions {
             if (organization.employeeNameExists(managerInput)) {
                 managerRef = organization.search(managerInput);
             } else {
-                System.out.println("Warning: Hiring manager does not exist");
+                System.out.println("Warning: Hiring manager does not exist\n");
                 return;
             }
 
             if (!managerRef.getName().equals(Organization.VACANT) && managerRef.getCanHire()) {
                 organization.fillVacancy(managerRef, employeeInput);
             } else {
-                System.out.println("Warning: Hiring manager cannot hire anyone!");
+                System.out.println("Warning: Hiring manager cannot hire anyone!\n");
                 return;
             }
 
@@ -196,7 +196,7 @@ public class Actions {
                     }
                     catch (Exception e) {
                         System.out.println(e + ": employee level is not acceptable for a President to" +
-                                " promote as the President will not become the direct manager of the promoted");
+                                " promote as the President will not become the direct manager of the promoted\n");
                         break;
                     }
                     for (VicePresident vp : presRef.getVPs()) {
@@ -208,7 +208,7 @@ public class Actions {
                             else {
                                 System.out.println("Error: " + promoteSupervisor.getName() + " is in " +
                                         "the same branch as the Vice President position, and is " +
-                                        "therefore unable to be promoted.");
+                                        "therefore unable to be promoted.\n");
                             }
                             break;
                         }
@@ -221,7 +221,7 @@ public class Actions {
                     }
                     catch (Exception e) {
                         System.out.println(e + ": employee level is not acceptable for a Vice President to" +
-                                " promote as the Vice President will not become the direct manager of the promoted");
+                                " promote as the Vice President will not become the direct manager of the promoted\n");
                         break;
                     }
 
@@ -234,7 +234,7 @@ public class Actions {
                             }
                         }
                     }
-                    System.out.println("No supervisor slots available in " + vpRef.getName() + "'s branch.");
+                    System.out.println("No supervisor slots available in " + vpRef.getName() + "'s branch.\n");
             }
 
         } else {
@@ -260,7 +260,7 @@ public class Actions {
             }
 
             if (!managerRef.getCanTransfer()) {
-                System.out.println(managerRef.getName() + " does not have the power to transfer employees.");
+                System.out.println(managerRef.getName() + " does not have the power to transfer employees.\n");
                 return;
             }
 
@@ -309,12 +309,12 @@ public class Actions {
                             System.out.println(vpRef.getName() + " has no Worker vacancies available to transfer " + transferEmp.getName());
                         }
                     } else {
-                        System.out.println("Error: Vice Presidents may not transfer other Vice Presidents or themselves.");
+                        System.out.println("Error: Vice Presidents may not transfer other Vice Presidents or themselves.\n");
                     }
                     break;
                 default:
                     System.out.println(managerRef.getName() + " is a " + managerRef.getPosition() + ". " +
-                            managerRef.getPosition() + "s do not have the power to transfer.");
+                            managerRef.getPosition() + "s do not have the power to transfer.\n");
                     break;
             }
         } else {

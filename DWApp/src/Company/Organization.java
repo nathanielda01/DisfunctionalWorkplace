@@ -33,7 +33,6 @@ public class Organization {
     }
 
     public Employee search(String name) {
-
         if (president.getName().equals(name)) {
             return president;
         }
@@ -189,7 +188,6 @@ public class Organization {
     }
 
     public void layoffEmployee(Employee manager, Employee worker) {
-
         switch (worker.getPosition()) {
             case "VicePresident":
                 layoffEmployeeVP(manager, (VicePresident) worker);

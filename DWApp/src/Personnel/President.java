@@ -31,10 +31,13 @@ public class President extends Employee{
     }
 
     public void print() {
+        System.out.println();
         System.out.println("President: " + getName());
 
         for (VicePresident vice: vicePresidents) {
             vice.print();
         }
+
+        System.out.println();
     }
 }

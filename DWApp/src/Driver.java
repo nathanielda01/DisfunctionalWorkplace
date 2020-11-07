@@ -21,7 +21,6 @@ public class Driver {
             while (!input.equals("Exit")) {
                 promptUser();
                 input = (input.replaceAll(input, scanner.nextLine().strip()));
-                System.out.println();
 
                 organization.executeAction(input);
             }
@@ -34,8 +33,8 @@ public class Driver {
         System.out.println("***Company Actions***");
         System.out.println("To hire someone type: \"Hire\"");
         System.out.println("To fire someone type: \"Fire\"");
-        System.out.println("Let someone quit type: \"Quit\"");
-        System.out.println("Lay off someone type: \"Layoff\"");
+        System.out.println("To let someone quit type: \"Quit\"");
+        System.out.println("To lay off someone type: \"Layoff\"");
         System.out.println("To transfer someone type: \"Transfer\"");
         System.out.println("To promote someone type: \"Promote\"");
         System.out.println("To print current organization type: \"Print\"");
