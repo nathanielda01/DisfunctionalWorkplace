@@ -244,7 +244,7 @@ public class PresidentTests {
     @Test
     public void presidentPrintVacantAndEmpty() {
         President.print();
-        assertEquals("\r\nPresident: vacant\r\n\r\n", testConsoleOut.toString());
+        assertEquals("President: vacant\r\n\r\n", testConsoleOut.toString());
     }
 
     //  Similar to the print issue above where this won't print if there are supervisors that don't have workers.
@@ -256,7 +256,7 @@ public class PresidentTests {
             pos = pos + 1;
         }
         President.print();
-        String expectedPrint = "\r\nPresident: vacant\r\n" +
+        String expectedPrint = "President: vacant\r\n" +
                 "\tVice President: Jack\r\n" +
                 "\tVice President: Jill\r\n\r\n";
 
@@ -268,7 +268,7 @@ public class PresidentTests {
         //Setting the name to an empty string or null should not update the name from vacant and therefore print empty
         President.setName("");
         President.print();
-        assertEquals("\r\nPresident: vacant\r\n\r\n", testConsoleOut.toString());
+        assertEquals("President: vacant\r\n\r\n", testConsoleOut.toString());
     }
 
     @Test
@@ -281,7 +281,7 @@ public class PresidentTests {
             pos = pos + 1;
         }
 
-        String expectedPrint = "\r\nPresident: Wilfred\r\n" +
+        String expectedPrint = "President: Wilfred\r\n" +
                 "\tVice President: Jack\r\n" +
                 "\tVice President: Jill\r\n\r\n";
 
