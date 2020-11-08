@@ -13,17 +13,17 @@ public class VicePresident extends Employee {
         this.position = "Vice President";
         for (int i = 0; i < supervisors.length; i++) {
             supervisors[i] = new Supervisor();
-            supervisors[i].setManager(this);
+            supervisors[i].manager = this;
             supervisors[i].setName(VACANT);
         }
 
-        setCanFire(true);
-        setCanHire(true);
-        setCanTransfer(true);
-        setCanPromote(true);
-        setCanLayoff(true);
-        setCanBePromoted(false);
-        setCanQuit(true);
+        canFire = true;
+        canHire = true;
+        canTransfer = true;
+        canPromote = true;
+        canLayoff = true;
+        isPromotable = false;
+        canQuit = true;
     }
 
     public Supervisor[] getSupervisors() {
@@ -32,7 +32,10 @@ public class VicePresident extends Employee {
 
     public boolean empty() {
         for (int i = 0; i < supervisors.length; i++) {
-            if (!supervisors[i].getName().equals(VACANT) && !supervisors[i].empty()) {
+            if (!supervisors[i].getName().equals(VACANT)) {
+                return false;
+            }
+            if (!supervisors[i].empty()) {
                 return false;
             }
         }

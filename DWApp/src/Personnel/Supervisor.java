@@ -13,16 +13,17 @@ public class Supervisor extends Employee {
         this.position = "Supervisor";
         for (int i = 0; i < workers.length; i++) {
             workers[i] = new Worker();
-            workers[i].setManager(this);
+            workers[i].manager = this;
             workers[i].setName(VACANT);
         }
-        setCanHire(true);
-        setCanFire(true);
-        setCanPromote(false);
-        setCanBePromoted(true);
-        setCanTransfer(false);
-        setCanLayoff(true);
-        setCanQuit(true);
+
+        canFire = true;
+        canHire = true;
+        canTransfer = false;
+        canPromote = false;
+        canLayoff = true;
+        isPromotable = true;
+        canQuit = true;
     }
 
     public Worker[] getWorkers() {

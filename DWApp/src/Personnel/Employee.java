@@ -1,6 +1,5 @@
 package Personnel;
 
-// TODO
 public abstract class Employee {
     // Variables
     protected String name;
@@ -19,12 +18,21 @@ public abstract class Employee {
     public Employee() { }
 
     public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+    public void setName(String name) {
+        if (name.equals("")) {
+            this.name = VACANT;
+        }
+        name = name.replaceAll("[^a-zA-Z]+", "");
+        if (name.matches("^[a-zA-Z'-]+$")) {
+            this.name = name;
+        }
+        else {
+            this.name = VACANT;
+        }
+    }
+
     public Employee getManager() {
         return manager;
-    }
-    public void setManager(Employee manager) {
-        this.manager = manager;
     }
 
     public boolean isEmpty() {
@@ -35,34 +43,13 @@ public abstract class Employee {
     }
 
 
-
-
-    public void setCanFire(boolean canFire) { this.canFire = canFire; }
-    public void setCanHire(boolean canHire) { this.canHire = canHire; }
     public boolean getCanFire() { return canFire; }
     public boolean getCanHire() { return canHire; }
-    public void setCanLayoff(boolean canLayoff) { this.canLayoff = canLayoff; }
-    public boolean getCanLayoff() {
-        return canLayoff;
-    }
-
-    public void setCanTransfer(boolean canTransfer) { this.canTransfer = canTransfer; }
+    public boolean getCanLayoff() { return canLayoff; }
     public boolean getCanTransfer() { return  canTransfer; }
-    public boolean getCanQuit() {
-        return canQuit;
-    }
-    public void setCanQuit(boolean canQuit) {
-        this.canQuit = canQuit;
-    }
-
-    public void setCanPromote(boolean canPromote) { this.canPromote = canPromote; }
+    public boolean getCanQuit() { return canQuit; }
     public boolean getCanPromote() {return canPromote;}
-    public void setCanBePromoted(boolean isPromotable) { this.isPromotable = isPromotable; }
-    public boolean getCanBePromoted() {
-        return isPromotable;
-    }
+    public boolean getCanBePromoted() { return isPromotable; }
 
-    public String getPosition() {
-        return position;
-    }
+    public String getPosition() { return position; }
 }

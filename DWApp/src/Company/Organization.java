@@ -56,24 +56,8 @@ public class Organization {
     }
 
     public boolean employeeNameExists(String name) {
-        if (president.getName().equals(name)) {
+        if (this.search(name) != null) {
             return true;
-        }
-
-        for (int i = 0; i < president.getVPs().length; i++) {
-            if (president.getVPs()[i].getName().equals(name)) {
-                return true;
-            }
-            for (int j = 0; j < president.getVPs()[i].getSupervisors().length; j++) {
-                if (president.getVPs()[i].getSupervisors()[j].getName().equals(name)) {
-                    return true;
-                }
-                for (int k = 0; k < president.getVPs()[i].getSupervisors()[j].getWorkers().length; k++) {
-                    if (president.getVPs()[i].getSupervisors()[j].getWorkers()[k].getName().equals(name)) {
-                        return true;
-                    }
-                }
-            }
         }
         return false;
     }
@@ -86,8 +70,13 @@ public class Organization {
             scanner = new Scanner(file);
 
             while (search(VACANT) != null && scanner.hasNextLine()) {
-                Employee e = search(VACANT);
-                e.setName(scanner.nextLine());
+                String line = scanner.nextLine();
+                line = validateName(line);
+
+                if (!employeeNameExists(line)) {
+                    Employee employee = search(VACANT);
+                    employee.setName(line);
+                }
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -106,18 +95,19 @@ public class Organization {
 
 
     public void fillVacancy(Employee manager, String empName) {
-        switch (manager.getClass().getSimpleName()) {
+        switch (manager.getPosition()) {
             case "President":
                 President president = (President) manager;
                 for (int i = 0; i < president.getVPs().length; i++) {
-                    if (president.getVPs()[i].getName().equals(VACANT)) {
+                    if (president.getVPs()[i].getName().equals(VACANT) && !employeeNameExists(empName)) {
                         president.getVPs()[i].setName(empName);
                         return;
                     }
                 }
                 System.out.println("Warning: No vacancy under " + president.getName() + "\n");
                 break;
-            case "VicePresident":
+
+            case "Vice President":
                 VicePresident vp = (VicePresident) manager;
                 for (int i = 0; i < vp.getSupervisors().length; i++) {
                     if (vp.getSupervisors()[i].getName().equals(VACANT)) {
@@ -127,6 +117,7 @@ public class Organization {
                 }
                 System.out.println("Warning: No vacancy under " + vp.getName() + "\n");
                 break;
+
             case "Supervisor":
                 Supervisor supervisor = (Supervisor) manager;
                 for(int i = 0; i < supervisor.getWorkers().length; i++) {
@@ -198,7 +189,7 @@ public class Organization {
 
     public void layoffEmployee(Employee manager, Employee worker) {
 
-        switch (worker.getClass().getSimpleName()) {
+        switch (worker.getPosition()) {
             case "VicePresident":
                 layoffEmployeeVP(manager, (VicePresident) worker);
                 break;
@@ -341,6 +332,11 @@ public class Organization {
 
     public void executeAction(String action) {
         actions.execute(action);
+    }
+
+    private String validateName(String name) {
+        name = name.replaceAll("[^a-zA-Z]+", "");
+        return name;
     }
 }
 
