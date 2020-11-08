@@ -11,12 +11,8 @@ public class Actions {
     private String input = "";
     private String employeeInput = "";
     private String managerInput = "";
-    private String hireInput = "";
-    private String fireInput = "";
     private String quitInput = "";
     private String layoffInput = "";
-    private String transferInput = "";
-    private String promoteInput = "";
     private Scanner scanner = new Scanner(System.in);
 
     // Methods
@@ -48,13 +44,15 @@ public class Actions {
                 organization.printOrganization();
                 break;
             default:
-                System.out.println(action + " is not a valid action.\n");
+                System.out.println("Error: " + action + " is not a valid action.\n");
                 break;
         }
     }
 
     private void layoff() {
-        promptForNames();
+        if (!promptForNames()) {
+            return;
+        }
 
         if (organization.employeeNameExists(employeeInput) && !employeeInput.equals(organization.getPresident().getName())) {
             Employee layoffEmp = organization.search(employeeInput);
@@ -62,21 +60,21 @@ public class Actions {
             if (organization.employeeNameExists(managerInput))
                 managerRef = organization.search(managerInput);
             else {
-                System.out.println("Warning: Layoff manager does not exist\n");
+                System.out.println("Error: That manager does not exist.\n");
                 return;
             }
 
-            if (!managerRef.getName().equals(organization.VACANT) && managerRef.getCanLayoff()) {
+            if (!managerRef.getName().equals(Organization.VACANT) && managerRef.getCanLayoff()) {
                 organization.layoffEmployee(managerRef, layoffEmp);
             } else {
-                System.out.println("Warning: Specified layoff manager is not authorized to layoff employees.\n");
+                System.out.println("Error: That manager is not authorized to layoff employees.\n");
                 return;
             }
         } else {
             if (layoffInput.equals(organization.getPresident().getName()))
-                System.out.println("Warning: The president cannot be laid off!\n");
+                System.out.println("Error: The president cannot be laid off.\n");
             else
-                System.out.println("Warning: That employee does not exist, cannot be laid off!\n");
+                System.out.println("Error: That employee does not exist.\n");
         }
         return;
     }
@@ -89,7 +87,7 @@ public class Actions {
             Employee quitEmp = organization.search(quitInput);
 
             if (quitEmp.getCanQuit()) {
-                quitEmp.setName(Organization.VACANT);
+                organization.quitEmployee(quitEmp);
             }
 
         } else {
@@ -105,13 +103,15 @@ public class Actions {
                 System.out.println("\n");
             }
             else
-                System.out.println("Warning: That employee does not exist, cannot quit!\n");
+                System.out.println("Error: That employee does not exist.\n");
         }
         return;
     }
 
     private void fire() {
-        promptForNames();
+        if (!promptForNames()) {
+            return;
+        }
 
         if (organization.employeeNameExists(employeeInput) && !employeeInput.equals(organization.getPresident().getName())) {
 
@@ -120,46 +120,48 @@ public class Actions {
             if (organization.employeeNameExists(managerInput))
                 managerRef = organization.search(managerInput);
             else {
-                System.out.println("Warning: Firing manager does not exist\n");
+                System.out.println("Error: That manager does not exist.\n");
                 return;
             }
 
-            if (!managerRef.getName().equals(organization.VACANT) && managerRef.getCanFire())
+            if (!managerRef.getName().equals(Organization.VACANT) && managerRef.getCanFire())
                 organization.fireEmployee(managerRef, beingFired);
             else {
-                System.out.println("Warning: Specified firing manager is not authorized to fire employees.\n");
+                System.out.println("Error: That manager is not authorized to fire employees.\n");
                 return;
             }
         } else {
             if (employeeInput.equals(organization.getPresident().getName()))
-                System.out.println("Warning: The president cannot be fired!\n");
+                System.out.println("Error: The president cannot be fired.\n");
             else
-                System.out.println("Warning: That employee does not exist, cannot fire!\n");
+                System.out.println("Error: That employee does not exist.\n");
         }
         return;
     }
 
     private void hire() {
-        promptForNames();
+        if (!promptForNames()) {
+            return;
+        }
 
         if (!organization.employeeNameExists(employeeInput)) {
 
             if (organization.employeeNameExists(managerInput)) {
                 managerRef = organization.search(managerInput);
             } else {
-                System.out.println("Warning: Hiring manager does not exist\n");
+                System.out.println("Error: That manager does not exist.\n");
                 return;
             }
 
             if (!managerRef.getName().equals(Organization.VACANT) && managerRef.getCanHire()) {
-                organization.fillVacancy(managerRef, employeeInput);
+                organization.hireEmployee(managerRef, employeeInput);
             } else {
-                System.out.println("Warning: Hiring manager cannot hire anyone!\n");
+                System.out.println("Error: That manager cannot hire anyone.\n");
                 return;
             }
 
         } else {
-            System.out.println("Warning: That employee already exists, cannot hire!\n");
+            System.out.println("Error: That employee already exists.\n");
             return;
         }
         return;
@@ -170,24 +172,25 @@ public class Actions {
         Supervisor promoteSupervisor;
         Worker promoteWorker;
 
-        promptForNames();
+        if (!promptForNames()) {
+            return;
+        }
 
         if (organization.employeeNameExists(employeeInput)) {
             promoteEmp = organization.search(employeeInput);
         } else {
-            System.out.println("Warning: That employee does not exist, cannot promote!\n");
+            System.out.println("Error: That employee does not exist.\n");
             return;
         }
 
         if (organization.employeeNameExists(managerInput))
             managerRef = organization.search(managerInput);
         else {
-            System.out.println("Warning: Promoting manager does not exist.\n");
+            System.out.println("Error: That manager does not exist.\n");
             return;
         }
 
         if (managerRef.getCanPromote()) {
-
             switch (managerRef.getPosition()) {
                 case "President":
                     President presRef = (President)managerRef;
@@ -204,6 +207,7 @@ public class Actions {
                             if (!vp.contains(promoteSupervisor.getName())) {
                                 vp.setName(promoteSupervisor.getName());
                                 promoteSupervisor.setName(Organization.VACANT);
+                                System.out.println("Success! " + vp.getName() + " was promoted.\n");
                             }
                             else {
                                 System.out.println("Error: " + promoteSupervisor.getName() + " is in " +
@@ -230,15 +234,16 @@ public class Actions {
                             if (!vpRef.getSupervisors()[i].contains(promoteWorker.getName())) {
                                 vpRef.getSupervisors()[i].setName(promoteWorker.getName());
                                 promoteWorker.setName(Organization.VACANT);
+                                System.out.println("Success! " + vpRef.getSupervisors()[i].getName() + " was promoted.\n");
                                 return;
                             }
                         }
                     }
-                    System.out.println("No supervisor slots available in " + vpRef.getName() + "'s branch.\n");
+                    System.out.println("Error: No supervisor slots available in " + vpRef.getName() + "'s branch.\n");
             }
 
         } else {
-            System.out.println("Warning: Promoting manager cannot promote employee.\n");
+            System.out.println("Error: That manager cannot promote employee.\n");
             return;
         }
 
@@ -246,7 +251,9 @@ public class Actions {
     }
 
     private void transfer() {
-        promptForNames();
+        if (!promptForNames()) {
+            return;
+        }
 
         if (organization.employeeNameExists(employeeInput)) {
             Employee transferEmp = organization.search(employeeInput);
@@ -255,12 +262,12 @@ public class Actions {
                 managerRef = organization.search(managerInput);
             }
             else {
-                System.out.println("Warning: Transferring manager does not exist.\n");
+                System.out.println("Error: That manager does not exist.\n");
                 return;
             }
 
             if (!managerRef.getCanTransfer()) {
-                System.out.println(managerRef.getName() + " does not have the power to transfer employees.\n");
+                System.out.println("Error: That manager is not authorized to transfer employees.\n");
                 return;
             }
 
@@ -271,8 +278,7 @@ public class Actions {
                         if (vacancy.getPosition().equals(transferEmp.getPosition())) {
                             vacancy.setName(transferEmp.getName());
                             transferEmp.setName(Organization.VACANT);
-                            System.out.println("Transfer complete: " + vacancy.getName() +
-                                    " is now managed by " + vacancy.getManager().getName());
+                            System.out.println("Success! " + vacancy.getName() + " was transferred.\n");
                             break;
                         } else {
                             vacancy.setName("-1");
@@ -289,11 +295,12 @@ public class Actions {
                             if (vpRef.getSupervisors()[i].getName().equals(Organization.VACANT)) {
                                 vpRef.getSupervisors()[i].setName(transferEmp.getName());
                                 transferEmp.setName(Organization.VACANT);
+                                System.out.println("Success! " + vpRef.getSupervisors()[i].getName() + " was transferred.\n");
                                 break;
                             }
                         }
                         if (!transferEmp.getName().equals(Organization.VACANT)) {
-                            System.out.println(vpRef.getName() + " has no Supervisor vacancies available to transfer " + transferEmp.getName());
+                            System.out.println("Error: That manager has no Supervisor vacancies\n");
                         }
                     } else if (transferEmp.getPosition().equals("Worker") && transferEmp.getManager().getManager().getName().equals(vpRef.getName())) {
                         for (int i = 0; i < vpRef.getSupervisors().length; i++) {
@@ -301,35 +308,51 @@ public class Actions {
                                 if (vpRef.getSupervisors()[i].getWorkers()[j].getName().equals(Organization.VACANT)) {
                                     vpRef.getSupervisors()[i].getWorkers()[j].setName(transferEmp.getName());
                                     transferEmp.setName(Organization.VACANT);
+                                    System.out.println("Success! " + vpRef.getSupervisors()[i].getWorkers()[j].getName() + " was transferred.\n");
                                 }
                             }
                         }
 
                         if (!transferEmp.getName().equals(Organization.VACANT)) {
-                            System.out.println(vpRef.getName() + " has no Worker vacancies available to transfer " + transferEmp.getName());
+                            System.out.println("Error: That manager has no Worker vacancies");
                         }
                     } else {
                         System.out.println("Error: Vice Presidents may not transfer other Vice Presidents or themselves.\n");
                     }
                     break;
                 default:
-                    System.out.println(managerRef.getName() + " is a " + managerRef.getPosition() + ". " +
-                            managerRef.getPosition() + "s do not have the power to transfer.\n");
+                    System.out.println("Error: That manager is not authorized to transfer employees.\n");
                     break;
             }
         } else {
-            System.out.println("Warning: That employee does not exist, cannot transfer!\n");
+            System.out.println("Error: That employee does not exist.\n");
         }
         return;
     }
 
-    private void promptForNames() {
+    private boolean promptForNames() {
+        boolean validEmpName = true;
+        boolean validManName = true;
+
         System.out.print("Enter employee's name: ");
         employeeInput = (layoffInput.replaceAll(layoffInput, scanner.nextLine().strip()));
         employeeInput = employeeInput.replaceAll("[^a-zA-Z]+", "");
-        System.out.print("Enter manager's name: ");
-        managerInput = (input.replaceAll(input, scanner.nextLine().strip()));
-        managerInput = managerInput.replaceAll("[^a-zA-Z]+", "");
+
+        if (employeeInput.equals("")) {
+            System.out.println("Error: Invalid employee name.\n");
+            validEmpName = false;
+        } else {
+            System.out.print("Enter manager's name: ");
+            managerInput = (input.replaceAll(input, scanner.nextLine().strip()));
+            managerInput = managerInput.replaceAll("[^a-zA-Z]+", "");
+
+            if (managerInput.equals("")) {
+                System.out.println("Error: Invalid manager name.\n");
+                validManName = false;
+            }
+        }
+
+        return (validEmpName && validManName);
     }
 
     public static void sleep(long time) {

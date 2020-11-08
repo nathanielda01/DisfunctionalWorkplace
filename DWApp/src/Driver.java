@@ -8,8 +8,8 @@ public class Driver {
 
     public static void main(String[] args) {
         organization = new Organization();
-        organization.printWelcome();
         organization.loadOrganization("TestOrg.txt");
+        organization.printWelcome();
         appMenu(organization);
     }
 
