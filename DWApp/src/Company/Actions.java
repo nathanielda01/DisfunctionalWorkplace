@@ -275,11 +275,11 @@ public class Actions {
                                     " is now managed by " + vacancy.getManager().getName());
                             break;
                         } else {
-                            vacancy.setName("-1");
+                            vacancy.setName(Organization.VACANT + "S");
                         }
                     }
-                    while (organization.search("-1") != null) {
-                        organization.search("-1").setName(Organization.VACANT);
+                    while (organization.search(Organization.VACANT + "S") != null) {
+                        organization.search(Organization.VACANT + "S").setName(Organization.VACANT);
                     }
                     break;
                 case "Vice President":

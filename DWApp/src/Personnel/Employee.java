@@ -12,6 +12,7 @@ public abstract class Employee {
     protected boolean canPromote;
     protected boolean isPromotable;
     protected String position;
+    private boolean searchKey = false;
     static final String VACANT = "vacant";
 
     // Methods
@@ -29,6 +30,14 @@ public abstract class Employee {
         else {
             this.name = VACANT;
         }
+    }
+
+    public boolean getSearchKey() {
+        return searchKey;
+    }
+
+    public void setSearchKey(boolean searchKey) {
+        this.searchKey = searchKey;
     }
 
     public Employee getManager() {
