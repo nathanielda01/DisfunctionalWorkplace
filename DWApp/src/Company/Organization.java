@@ -19,101 +19,28 @@ public class Organization {
     // Methods
     public Organization() {
         actions = new Actions(this);
-        President president = new President();
-        setPresident(president);
+        president = new President();
     }
 
     public President getPresident() { return president; }
 
-    private void setPresident(President president) {
-        if (this.president == null) {
-            this.president = president;
-        }
-
-        return;
-    }
-
-    public Employee search(String name) {
-        if (president.getName().equals(name)) {
-            return president;
-        }
-
-        for (int i = 0; i < president.getVPs().length; i++) {
-            if (president.getVPs()[i].getName().equals(name)) {
-                return president.getVPs()[i];
-            }
-            for (int j = 0; j < president.getVPs()[i].getSupervisors().length; j++) {
-                if (president.getVPs()[i].getSupervisors()[j].getName().equals(name)) {
-                    return president.getVPs()[i].getSupervisors()[j];
-                }
-                for (int k = 0; k < president.getVPs()[i].getSupervisors()[j].getWorkers().length; k++) {
-                    if (president.getVPs()[i].getSupervisors()[j].getWorkers()[k].getName().equals(name)) {
-                        return president.getVPs()[i].getSupervisors()[j].getWorkers()[k];
-                    }
-                }
-            }
-        }
-        return null;
-    }
-
-    public boolean employeeNameExists(String name) {
-        if (this.search(name) != null) {
-            return true;
-        }
-        return false;
-    }
-
-    public void loadOrganization(String filename) {
-        Scanner scanner;
-
-        File file = new File(filename);
-        try {
-            scanner = new Scanner(file);
-
-            while (search(VACANT) != null && scanner.hasNextLine()) {
-                String line = scanner.nextLine();
-                line = validateName(line);
-
-                if (!employeeNameExists(line)) {
-                    Employee employee = search(VACANT);
-                    employee.setName(line);
-                }
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        return;
-    }
-
-    public void printOrganization() {
-        System.out.println();
-        president.print();
-
-        return;
-    }
-
-    public void printWelcome() {
-        System.out.println("Dysfunctional Organization Application\n");
-        System.out.println("Current organization of Wacky Widget company:");
-        printOrganization();
-
-        return;
-    }
-
-
     public void hireEmployee(Employee manager, String empName) {
+        boolean hired = false;
+
+        if (!manager.getCanHire()) {
+            System.out.println("Error: That employee cannot hire anyone.\n");
+            return;
+        }
+
         switch (manager.getPosition()) {
             case "President":
                 President president = (President) manager;
                 for (int i = 0; i < president.getVPs().length; i++) {
                     if (president.getVPs()[i].getName().equals(VACANT)) {
                         president.getVPs()[i].setName(empName);
-                        System.out.println("Success! " + empName + " was hired.\n");
-                        return;
+                        hired = true;
                     }
                 }
-                System.out.println("Error: No vacancy under " + president.getName() + ".\n");
                 break;
 
             case "Vice President":
@@ -121,11 +48,9 @@ public class Organization {
                 for (int i = 0; i < vp.getSupervisors().length; i++) {
                     if (vp.getSupervisors()[i].getName().equals(VACANT)) {
                         vp.getSupervisors()[i].setName(empName);
-                        System.out.println("Success! " + empName + " was hired.\n");
-                        return;
+                        hired = true;
                     }
                 }
-                System.out.println("Error: No vacancy under " + vp.getName() + ".\n");
                 break;
 
             case "Supervisor":
@@ -133,15 +58,17 @@ public class Organization {
                 for(int i = 0; i < supervisor.getWorkers().length; i++) {
                     if(supervisor.getWorkers()[i].getName().equals(VACANT)) {
                         supervisor.getWorkers()[i].setName(empName);
-                        System.out.println("Success! " + empName + " was hired.\n");
-                        return;
+                        hired = true;
                     }
                 }
-                System.out.println("Error: No vacancy under " + supervisor.getName() + ".\n");
                 break;
         }
 
-        return;
+        if (hired) {
+            System.out.println("Success! " + empName + " was hired.\n");
+        } else {
+            System.out.println("Error: No vacancy under " + manager.getName() + ".\n");
+        }
     }
 
     public void fireEmployee(Employee manager, Employee worker) {
@@ -360,13 +287,76 @@ public class Organization {
         return false;
     }
 
+    public Employee search(String name) {
+        if (president.getName().equals(name)) {
+            return president;
+        }
+
+        for (int i = 0; i < president.getVPs().length; i++) {
+            if (president.getVPs()[i].getName().equals(name)) {
+                return president.getVPs()[i];
+            }
+            for (int j = 0; j < president.getVPs()[i].getSupervisors().length; j++) {
+                if (president.getVPs()[i].getSupervisors()[j].getName().equals(name)) {
+                    return president.getVPs()[i].getSupervisors()[j];
+                }
+                for (int k = 0; k < president.getVPs()[i].getSupervisors()[j].getWorkers().length; k++) {
+                    if (president.getVPs()[i].getSupervisors()[j].getWorkers()[k].getName().equals(name)) {
+                        return president.getVPs()[i].getSupervisors()[j].getWorkers()[k];
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    public boolean employeeNameExists(String name) {
+        if (this.search(name) != null) {
+            return true;
+        }
+        return false;
+    }
+
+    public void loadOrganization(String filename) {
+        Scanner scanner;
+
+        File file = new File(filename);
+        try {
+            scanner = new Scanner(file);
+
+            while (search(VACANT) != null && scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                line = validateName(line);
+
+                if (!employeeNameExists(line)) {
+                    Employee employee = search(VACANT);
+                    employee.setName(line);
+                }
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return;
+    }
+
+    public void printOrganization() {
+        System.out.println();
+        president.print();
+    }
+
+    public void printWelcome() {
+        System.out.println("Dysfunctional Organization Application\n");
+        System.out.println("Current organization of Wacky Widget company:");
+        printOrganization();
+    }
+
     public void executeAction(String action) {
         actions.execute(action);
     }
 
     private String validateName(String name) {
-        name = name.replaceAll("[^a-zA-Z]+", "");
-        return name;
+        return name.replaceAll("[^a-zA-Z]+", "");
     }
 }
 

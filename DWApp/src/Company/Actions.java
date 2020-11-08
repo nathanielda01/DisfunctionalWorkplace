@@ -49,13 +49,35 @@ public class Actions {
         }
     }
 
-    private void layoff() {
+    private void hire() {
+        // Input validation gauntlet
+        if (!promptForEmployeeName()) {
+            return;
+        }
+        if (organization.employeeNameExists(employeeInput)) {
+            System.out.println("Error: That employee already exists.\n");
+            return;
+        }
+        if (!promptForManagerName()) {
+            return;
+        }
+        managerRef = organization.search(managerInput);
+        if (managerRef == null) {
+            System.out.println("Error: That manager doesn't exist.\n");
+            return;
+        }
+
+        // Input was valid, try hiring
+        organization.hireEmployee(managerRef, employeeInput);
+    }
+
+    private void fire() {
         if (!promptForNames()) {
             return;
         }
 
         if (organization.employeeNameExists(employeeInput) && !employeeInput.equals(organization.getPresident().getName())) {
-            Employee layoffEmp = organization.search(employeeInput);
+            Employee beingFired = organization.search(employeeInput);
 
             if (organization.employeeNameExists(managerInput))
                 managerRef = organization.search(managerInput);
@@ -64,18 +86,19 @@ public class Actions {
                 return;
             }
 
-            if (!managerRef.getName().equals(Organization.VACANT) && managerRef.getCanLayoff()) {
-                organization.layoffEmployee(managerRef, layoffEmp);
-            } else {
-                System.out.println("Error: That manager is not authorized to layoff employees.\n");
+            if (!managerRef.getName().equals(Organization.VACANT) && managerRef.getCanFire())
+                organization.fireEmployee(managerRef, beingFired);
+            else {
+                System.out.println("Error: That manager is not authorized to fire employees.\n");
                 return;
             }
         } else {
-            if (layoffInput.equals(organization.getPresident().getName()))
-                System.out.println("Error: The president cannot be laid off.\n");
+            if (employeeInput.equals(organization.getPresident().getName()))
+                System.out.println("Error: The president cannot be fired.\n");
             else
                 System.out.println("Error: That employee does not exist.\n");
         }
+
         return;
     }
 
@@ -105,17 +128,17 @@ public class Actions {
             else
                 System.out.println("Error: That employee does not exist.\n");
         }
+
         return;
     }
 
-    private void fire() {
+    private void layoff() {
         if (!promptForNames()) {
             return;
         }
 
         if (organization.employeeNameExists(employeeInput) && !employeeInput.equals(organization.getPresident().getName())) {
-
-            Employee beingFired = organization.search(employeeInput);
+            Employee layoffEmp = organization.search(employeeInput);
 
             if (organization.employeeNameExists(managerInput))
                 managerRef = organization.search(managerInput);
@@ -124,47 +147,102 @@ public class Actions {
                 return;
             }
 
-            if (!managerRef.getName().equals(Organization.VACANT) && managerRef.getCanFire())
-                organization.fireEmployee(managerRef, beingFired);
-            else {
-                System.out.println("Error: That manager is not authorized to fire employees.\n");
+            if (!managerRef.getName().equals(Organization.VACANT) && managerRef.getCanLayoff()) {
+                organization.layoffEmployee(managerRef, layoffEmp);
+            } else {
+                System.out.println("Error: That manager is not authorized to layoff employees.\n");
                 return;
             }
         } else {
-            if (employeeInput.equals(organization.getPresident().getName()))
-                System.out.println("Error: The president cannot be fired.\n");
+            if (layoffInput.equals(organization.getPresident().getName()))
+                System.out.println("Error: The president cannot be laid off.\n");
             else
                 System.out.println("Error: That employee does not exist.\n");
         }
+
         return;
     }
 
-    private void hire() {
+    private void transfer() {
         if (!promptForNames()) {
             return;
         }
 
-        if (!organization.employeeNameExists(employeeInput)) {
+        if (organization.employeeNameExists(employeeInput)) {
+            Employee transferEmp = organization.search(employeeInput);
 
             if (organization.employeeNameExists(managerInput)) {
                 managerRef = organization.search(managerInput);
-            } else {
+            }
+            else {
                 System.out.println("Error: That manager does not exist.\n");
                 return;
             }
 
-            if (!managerRef.getName().equals(Organization.VACANT) && managerRef.getCanHire()) {
-                organization.hireEmployee(managerRef, employeeInput);
-            } else {
-                System.out.println("Error: That manager cannot hire anyone.\n");
+            if (!managerRef.getCanTransfer()) {
+                System.out.println("Error: That manager is not authorized to transfer employees.\n");
                 return;
             }
 
+            switch (managerRef.getPosition()) {
+                case "President":
+                    while (organization.search(Organization.VACANT) != null) {
+                        Employee vacancy = organization.search(Organization.VACANT);
+                        if (vacancy.getPosition().equals(transferEmp.getPosition())) {
+                            vacancy.setName(transferEmp.getName());
+                            transferEmp.setName(Organization.VACANT);
+                            System.out.println("Success! " + vacancy.getName() + " was transferred.\n");
+                            break;
+                        } else {
+                            vacancy.setName("-1");
+                        }
+                    }
+                    while (organization.search("-1") != null) {
+                        organization.search("-1").setName(Organization.VACANT);
+                    }
+                    break;
+                case "Vice President":
+                    VicePresident vpRef = (VicePresident) managerRef;
+                    if (transferEmp.getPosition().equals("Supervisor") && transferEmp.getManager().getName().equals(vpRef.getName())) {
+                        for (int i = 0; i < vpRef.getSupervisors().length; i++) {
+                            if (vpRef.getSupervisors()[i].getName().equals(Organization.VACANT)) {
+                                vpRef.getSupervisors()[i].setName(transferEmp.getName());
+                                transferEmp.setName(Organization.VACANT);
+                                System.out.println("Success! " + vpRef.getSupervisors()[i].getName() + " was transferred.\n");
+                                break;
+                            }
+                        }
+                        if (!transferEmp.getName().equals(Organization.VACANT)) {
+                            System.out.println("Error: That manager has no Supervisor vacancies\n");
+                        }
+                    } else if (transferEmp.getPosition().equals("Worker") && transferEmp.getManager().getManager().getName().equals(vpRef.getName())) {
+                        for (int i = 0; i < vpRef.getSupervisors().length; i++) {
+                            for (int j = 0; j < vpRef.getSupervisors()[i].getWorkers().length; j++) {
+                                if (vpRef.getSupervisors()[i].getWorkers()[j].getName().equals(Organization.VACANT)) {
+                                    vpRef.getSupervisors()[i].getWorkers()[j].setName(transferEmp.getName());
+                                    transferEmp.setName(Organization.VACANT);
+                                    System.out.println("Success! " + vpRef.getSupervisors()[i].getWorkers()[j].getName() + " was transferred.\n");
+                                }
+                            }
+                        }
+
+                        if (!transferEmp.getName().equals(Organization.VACANT)) {
+                            System.out.println("Error: That manager has no Worker vacancies");
+                        }
+                    } else {
+                        System.out.println("Error: Vice Presidents may not transfer other Vice Presidents or themselves.\n");
+                    }
+                    break;
+                default:
+                    System.out.println("Error: That manager is not authorized to transfer employees.\n");
+                    break;
+            }
         } else {
-            System.out.println("Error: That employee already exists.\n");
-            return;
+            System.out.println("Error: That employee does not exist.\n");
         }
+
         return;
+
     }
 
     private void promote() {
@@ -248,86 +326,35 @@ public class Actions {
         }
 
         return;
+
     }
 
-    private void transfer() {
-        if (!promptForNames()) {
-            return;
+    private boolean promptForEmployeeName() {
+        boolean validInput = true;
+
+        System.out.print("Enter employee's name: ");
+        employeeInput = scanner.nextLine().strip().replaceAll("[^a-zA-Z]+", "");
+
+        if (employeeInput.equals("")) {
+            validInput = false;
+            System.out.println("Error: Must enter a valid name.\n");
         }
 
-        if (organization.employeeNameExists(employeeInput)) {
-            Employee transferEmp = organization.search(employeeInput);
+        return validInput;
+    }
 
-            if (organization.employeeNameExists(managerInput)) {
-                managerRef = organization.search(managerInput);
-            }
-            else {
-                System.out.println("Error: That manager does not exist.\n");
-                return;
-            }
+    private boolean promptForManagerName() {
+        boolean validInput = true;
 
-            if (!managerRef.getCanTransfer()) {
-                System.out.println("Error: That manager is not authorized to transfer employees.\n");
-                return;
-            }
+        System.out.print("Enter manager's name: ");
+        managerInput = scanner.nextLine().strip().replaceAll("[^a-zA-Z]+", "");
 
-            switch (managerRef.getPosition()) {
-                case "President":
-                    while (organization.search(Organization.VACANT) != null) {
-                        Employee vacancy = organization.search(Organization.VACANT);
-                        if (vacancy.getPosition().equals(transferEmp.getPosition())) {
-                            vacancy.setName(transferEmp.getName());
-                            transferEmp.setName(Organization.VACANT);
-                            System.out.println("Success! " + vacancy.getName() + " was transferred.\n");
-                            break;
-                        } else {
-                            vacancy.setName("-1");
-                        }
-                    }
-                    while (organization.search("-1") != null) {
-                        organization.search("-1").setName(Organization.VACANT);
-                    }
-                    break;
-                case "Vice President":
-                    VicePresident vpRef = (VicePresident) managerRef;
-                    if (transferEmp.getPosition().equals("Supervisor") && transferEmp.getManager().getName().equals(vpRef.getName())) {
-                        for (int i = 0; i < vpRef.getSupervisors().length; i++) {
-                            if (vpRef.getSupervisors()[i].getName().equals(Organization.VACANT)) {
-                                vpRef.getSupervisors()[i].setName(transferEmp.getName());
-                                transferEmp.setName(Organization.VACANT);
-                                System.out.println("Success! " + vpRef.getSupervisors()[i].getName() + " was transferred.\n");
-                                break;
-                            }
-                        }
-                        if (!transferEmp.getName().equals(Organization.VACANT)) {
-                            System.out.println("Error: That manager has no Supervisor vacancies\n");
-                        }
-                    } else if (transferEmp.getPosition().equals("Worker") && transferEmp.getManager().getManager().getName().equals(vpRef.getName())) {
-                        for (int i = 0; i < vpRef.getSupervisors().length; i++) {
-                            for (int j = 0; j < vpRef.getSupervisors()[i].getWorkers().length; j++) {
-                                if (vpRef.getSupervisors()[i].getWorkers()[j].getName().equals(Organization.VACANT)) {
-                                    vpRef.getSupervisors()[i].getWorkers()[j].setName(transferEmp.getName());
-                                    transferEmp.setName(Organization.VACANT);
-                                    System.out.println("Success! " + vpRef.getSupervisors()[i].getWorkers()[j].getName() + " was transferred.\n");
-                                }
-                            }
-                        }
-
-                        if (!transferEmp.getName().equals(Organization.VACANT)) {
-                            System.out.println("Error: That manager has no Worker vacancies");
-                        }
-                    } else {
-                        System.out.println("Error: Vice Presidents may not transfer other Vice Presidents or themselves.\n");
-                    }
-                    break;
-                default:
-                    System.out.println("Error: That manager is not authorized to transfer employees.\n");
-                    break;
-            }
-        } else {
-            System.out.println("Error: That employee does not exist.\n");
+        if (managerInput.equals("")) {
+            validInput = false;
+            System.out.println("Error: Must enter a valid name.\n");
         }
-        return;
+
+        return validInput;
     }
 
     private boolean promptForNames() {
@@ -335,6 +362,11 @@ public class Actions {
         boolean validManName = true;
 
         System.out.print("Enter employee's name: ");
+        /*employeeInput = scanner.nextLine().strip();
+
+        if (employeeInput.equals("")) {
+            System.out.println("Error: Must enter a name.\n");
+        }*/
         employeeInput = (layoffInput.replaceAll(layoffInput, scanner.nextLine().strip()));
         employeeInput = employeeInput.replaceAll("[^a-zA-Z]+", "");
 
