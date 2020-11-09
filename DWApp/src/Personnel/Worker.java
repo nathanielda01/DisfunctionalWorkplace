@@ -1,6 +1,5 @@
 package Personnel;
 
-// TODO
 public class Worker extends Employee {
     // Variables
     static final String VACANT = "vacant";
