@@ -85,7 +85,7 @@ public class Organization {
 
     public void printWelcome() {
         System.out.println("Dysfunctional Organization Application");
-        System.out.println("\nCurrent organization of Wacky Widget company:\n");
+        System.out.println("\nLoaded in organization of Wacky Widget company.\n");
 
     }
 
@@ -186,7 +186,7 @@ public class Organization {
     public void layoffEmployee(Employee manager, Employee worker) {
 
         switch (worker.getPosition()) {
-            case "VicePresident":
+            case "Vice President":
                 layoffEmployeeVP(manager, (VicePresident) worker);
                 break;
             case "Supervisor":

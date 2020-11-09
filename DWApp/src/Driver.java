@@ -11,7 +11,6 @@ public class Driver {
     public static void main(String[] args) {
         scanner = new Scanner(System.in);
         organization = new Organization();
-        organization.printWelcome();
         String input = "";
         File inputFile = new File("");
 
@@ -39,6 +38,7 @@ public class Driver {
 
         }
 
+        organization.printWelcome();
         appMenu(organization);
     }
 
