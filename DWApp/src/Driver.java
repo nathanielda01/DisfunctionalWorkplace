@@ -19,7 +19,7 @@ public class Driver {
             System.out.println("Would you like to enter an input file for the application? \"yes\" or \"no\"");
             input = (input.replaceAll(input, scanner.nextLine().strip()));
 
-            if (input.equals("yes")) {
+            if (input.equalsIgnoreCase("yes")) {
                 System.out.print("Please enter the file path: ");
                 String fileString = scanner.nextLine().strip();
                 inputFile = new File(fileString);
@@ -29,7 +29,7 @@ public class Driver {
                     System.out.println("Invalid file path.");
                 }
 
-            } else if (input.equals("no")) {
+            } else if (input.equalsIgnoreCase("no")) {
                 System.out.println("Loading default text file for application.\n");
                 organization.loadOrganization("TestOrg.txt");
                 break;
@@ -44,7 +44,6 @@ public class Driver {
 
     public static void appMenu(Organization organization) {
         String input = "";
-        //Scanner scanner = new Scanner(System.in);
 
         try {
             while (!input.equals("Exit")) {

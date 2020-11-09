@@ -1,6 +1,5 @@
 package Personnel;
 
-// TODO
 public class VicePresident extends Employee {
     // Variables
     public static final int MAX_UNDER = 3;
