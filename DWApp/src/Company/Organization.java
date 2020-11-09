@@ -97,6 +97,7 @@ public class Organization {
                 for (int i = 0; i < president.getVPs().length; i++) {
                     if (president.getVPs()[i].getName().equals(VACANT) && !employeeNameExists(empName)) {
                         president.getVPs()[i].setName(empName);
+                        System.out.println(empName + " has been hired under " + manager.getName());
                         return;
                     }
                 }
@@ -108,6 +109,7 @@ public class Organization {
                 for (int i = 0; i < vp.getSupervisors().length; i++) {
                     if (vp.getSupervisors()[i].getName().equals(VACANT)) {
                         vp.getSupervisors()[i].setName(empName);
+                        System.out.println(empName + " has been hired under " + manager.getName());
                         return;
                     }
                 }
@@ -119,6 +121,7 @@ public class Organization {
                 for(int i = 0; i < supervisor.getWorkers().length; i++) {
                     if(supervisor.getWorkers()[i].getName().equals(VACANT)) {
                         supervisor.getWorkers()[i].setName(empName);
+                        System.out.println(empName + " has been hired under " + manager.getName());
                         return;
                     }
                 }
@@ -141,20 +144,26 @@ public class Organization {
             case "Worker":
                 Supervisor supervisor = (Supervisor) worker.getManager();
                 for(int i = 0; i < supervisor.getWorkers().length; i++)
-                    if(supervisor.getWorkers()[i].getName().equals(worker.getName()))
+                    if(supervisor.getWorkers()[i].getName().equals(worker.getName())) {
                         supervisor.getWorkers()[i].setName(VACANT);
+                        System.out.println(worker.getName() + " has been fired by " + manager.getPosition() + " " + manager.getName() + ".");
+                    }
                 break;
             case "Supervisor":
                 VicePresident vp = (VicePresident) worker.getManager();
                 for(int i = 0; i < vp.getSupervisors().length; i++)
-                    if(vp.getSupervisors()[i].getName().equals(worker.getName()))
+                    if(vp.getSupervisors()[i].getName().equals(worker.getName())) {
                         vp.getSupervisors()[i].setName(VACANT);
+                        System.out.println(worker.getName() + " has been fired by " + manager.getPosition() + " " + manager.getName() + ".");
+                    }
                 break;
             case "VicePresident":
                 President president = (President) worker.getManager();
                 for(int i = 0; i < president.getVPs().length; i++)
-                    if (president.getVPs()[i].getName().equals(worker.getName()))
+                    if (president.getVPs()[i].getName().equals(worker.getName())) {
                         president.getVPs()[i].setName(VACANT);
+                        System.out.println(worker.getName() + " has been fired by " + manager.getPosition() + " " + manager.getName() + ".");
+                    }
                 break;
         }
     }
@@ -208,6 +217,7 @@ public class Organization {
                 if (manager.getWorkers()[i].getName().equals(VACANT)) {
                     manager.getWorkers()[i].setName(worker.getName());
                     worker.setName(VACANT);
+                    System.out.println(worker.getName() + " has been laid off by " + layoffManager.getPosition() + " " + layoffManager.getName() + ".");
                     return;
                 }
             }
@@ -219,6 +229,7 @@ public class Organization {
                     if(vp.getSupervisors()[i].getWorkers()[j].getName().equals(VACANT)) {
                         vp.getSupervisors()[i].getWorkers()[j].setName(worker.getName());
                         worker.setName(VACANT);
+                        System.out.println(worker.getName() + " has been laid off by " + layoffManager.getPosition() + " " + layoffManager.getName() + ".");
                         return;
                     }
                 }
@@ -233,6 +244,7 @@ public class Organization {
                             if (president.getVPs()[i].getSupervisors()[j].getWorkers()[k].getName().equals(VACANT)) {
                                 president.getVPs()[i].getSupervisors()[j].getWorkers()[k].setName(worker.getName());
                                 worker.setName(VACANT);
+                                System.out.println(worker.getName() + " has been laid off by " + layoffManager.getPosition() + " " + layoffManager.getName() + ".");
                                 return;
                             }
                         }
@@ -256,6 +268,7 @@ public class Organization {
                 if(manager.getSupervisors()[i].getName().equals(VACANT)) {
                     manager.getSupervisors()[i].setName(worker.getName());
                     worker.setName(VACANT);
+                    System.out.println(worker.getName() + " has been laid off by " + layoffManager.getPosition() + " " + layoffManager.getName() + ".");
                     return;
                 }
             }
@@ -268,6 +281,7 @@ public class Organization {
                         if(president.getVPs()[i].getSupervisors()[j].getName().equals(VACANT)) {
                             president.getVPs()[i].getSupervisors()[j].setName(worker.getName());
                             worker.setName(VACANT);
+                            System.out.println(worker.getName() + " has been laid off by " + layoffManager.getPosition() + " " + layoffManager.getName() + ".");
                             return;
                         }
                     }
@@ -290,6 +304,7 @@ public class Organization {
                 if (president.getVPs()[i].getName().equals(VACANT)) {
                     president.getVPs()[i].setName(worker.getName());
                     worker.setName(VACANT);
+                    System.out.println(worker.getName() + " has been laid off by " + layoffManager.getPosition() + " " + layoffManager.getName() + ".");
                     return;
                 }
             }

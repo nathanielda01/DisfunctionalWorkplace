@@ -70,7 +70,6 @@ public class Actions {
 
             if (!managerRef.getName().equals(organization.VACANT) && managerRef.getCanLayoff()) {
                 organization.layoffEmployee(managerRef, layoffEmp);
-                System.out.println(employeeInput + " has been laid off by " + managerRef.getPosition() + " " + managerInput + ".");
             } else {
                 System.out.println("Warning: Specified layoff manager is not authorized to layoff employees.\n");
                 return;
@@ -130,7 +129,6 @@ public class Actions {
 
             if (!managerRef.getName().equals(organization.VACANT) && managerRef.getCanFire()) {
                 organization.fireEmployee(managerRef, beingFired);
-                System.out.println(employeeInput + " has been fired by " + managerRef.getPosition() + " " + managerInput + ".");
             }
             else {
                 System.out.println("Warning: Specified firing manager is not authorized to fire employees.\n");
@@ -159,7 +157,6 @@ public class Actions {
 
             if (!managerRef.getName().equals(Organization.VACANT) && managerRef.getCanHire()) {
                 organization.fillVacancy(managerRef, employeeInput);
-                System.out.println(employeeInput + " has been hired under " + managerInput);
             } else {
                 if (managerRef.getName().equals(Organization.VACANT)) {
                     System.out.println("Warning: Vacant position cannot hire.");
