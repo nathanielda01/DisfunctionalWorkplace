@@ -68,6 +68,8 @@ public class Actions {
 
             if (!managerRef.getName().equals(organization.VACANT) && managerRef.getCanLayoff()) {
                 organization.layoffEmployee(managerRef, layoffEmp);
+                System.out.println("Layoff completed successfully.\n");
+                sleep(1000);
             } else {
                 System.out.println("Warning: Specified layoff manager is not authorized to layoff employees.\n");
                 return;
@@ -90,6 +92,8 @@ public class Actions {
 
             if (quitEmp.getCanQuit()) {
                 quitEmp.setName(Organization.VACANT);
+                System.out.println("Employee successfully quit.\n");
+                sleep(1000);
             }
 
         } else {
@@ -124,8 +128,11 @@ public class Actions {
                 return;
             }
 
-            if (!managerRef.getName().equals(organization.VACANT) && managerRef.getCanFire())
+            if (!managerRef.getName().equals(organization.VACANT) && managerRef.getCanFire()) {
                 organization.fireEmployee(managerRef, beingFired);
+                System.out.println("Firing completed successfully.\n");
+                sleep(1000);
+            }
             else {
                 System.out.println("Warning: Specified firing manager is not authorized to fire employees.\n");
                 return;
@@ -153,6 +160,8 @@ public class Actions {
 
             if (!managerRef.getName().equals(Organization.VACANT) && managerRef.getCanHire()) {
                 organization.fillVacancy(managerRef, employeeInput);
+                System.out.println("Hiring completed successfully.\n");
+                sleep(1000);
             } else {
                 System.out.println("Warning: Hiring manager cannot hire anyone!");
                 return;
@@ -204,6 +213,8 @@ public class Actions {
                             if (!vp.contains(promoteSupervisor.getName())) {
                                 vp.setName(promoteSupervisor.getName());
                                 promoteSupervisor.setName(Organization.VACANT);
+                                System.out.println("Promotion completed successfully.\n");
+                                sleep(1000);
                             }
                             else {
                                 System.out.println("Error: " + promoteSupervisor.getName() + " is in " +
@@ -230,6 +241,8 @@ public class Actions {
                             if (!vpRef.getSupervisors()[i].contains(promoteWorker.getName())) {
                                 vpRef.getSupervisors()[i].setName(promoteWorker.getName());
                                 promoteWorker.setName(Organization.VACANT);
+                                System.out.println("Promotion completed successfully.\n");
+                                sleep(1000);
                                 return;
                             }
                         }
@@ -273,6 +286,7 @@ public class Actions {
                             transferEmp.setName(Organization.VACANT);
                             System.out.println("Transfer complete: " + vacancy.getName() +
                                     " is now managed by " + vacancy.getManager().getName());
+                            sleep(1000);
                             break;
                         } else {
                             vacancy.setName(Organization.VACANT + "S");
@@ -289,6 +303,8 @@ public class Actions {
                             if (vpRef.getSupervisors()[i].getName().equals(Organization.VACANT)) {
                                 vpRef.getSupervisors()[i].setName(transferEmp.getName());
                                 transferEmp.setName(Organization.VACANT);
+                                System.out.println("Transfer completed successfully.\n");
+                                sleep(1000);
                                 break;
                             }
                         }
