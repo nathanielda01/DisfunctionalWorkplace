@@ -8,12 +8,8 @@ import java.util.Scanner;
 
 public class Organization {
     // Variables
-    static final int PRES_MAX = 2;
-    static final int VP_MAX = 3;
-    static final int SUP_MAX = 5;
     public static final String VACANT = "vacant";
-    private Actions actions;
-    private String name;
+    private final Actions actions;
     private President president;
 
     // Methods

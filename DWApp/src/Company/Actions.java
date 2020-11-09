@@ -47,6 +47,8 @@ public class Actions {
             case "Print":
                 organization.printOrganization();
                 break;
+            case "Exit":
+                break;
             default:
                 System.out.println(action + " is not a valid action.");
                 break;
