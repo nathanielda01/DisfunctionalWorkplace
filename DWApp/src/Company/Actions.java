@@ -70,14 +70,13 @@ public class Actions {
 
             if (!managerRef.getName().equals(organization.VACANT) && managerRef.getCanLayoff()) {
                 organization.layoffEmployee(managerRef, layoffEmp);
-                System.out.println("Layoff completed successfully.\n");
-                sleep(1000);
+                System.out.println(employeeInput + " has been laid off by " + managerRef.getPosition() + " " + managerInput + ".");
             } else {
                 System.out.println("Warning: Specified layoff manager is not authorized to layoff employees.\n");
                 return;
             }
         } else {
-            if (layoffInput.equals(organization.getPresident().getName()))
+            if (employeeInput.equals(organization.getPresident().getName()))
                 System.out.println("Warning: The president cannot be laid off!\n");
             else
                 System.out.println("Warning: That employee does not exist, cannot be laid off!\n");
@@ -94,8 +93,7 @@ public class Actions {
 
             if (quitEmp.getCanQuit()) {
                 quitEmp.setName(Organization.VACANT);
-                System.out.println("Employee successfully quit.\n");
-                sleep(1000);
+                System.out.println(quitInput + " has quit their position.");
             }
 
         } else {
@@ -132,8 +130,7 @@ public class Actions {
 
             if (!managerRef.getName().equals(organization.VACANT) && managerRef.getCanFire()) {
                 organization.fireEmployee(managerRef, beingFired);
-                System.out.println("Firing completed successfully.\n");
-                sleep(1000);
+                System.out.println(employeeInput + " has been fired by " + managerRef.getPosition() + " " + managerInput + ".");
             }
             else {
                 System.out.println("Warning: Specified firing manager is not authorized to fire employees.\n");
@@ -162,10 +159,14 @@ public class Actions {
 
             if (!managerRef.getName().equals(Organization.VACANT) && managerRef.getCanHire()) {
                 organization.fillVacancy(managerRef, employeeInput);
-                System.out.println("Hiring completed successfully.\n");
-                sleep(1000);
+                System.out.println(employeeInput + " has been hired under " + managerInput);
             } else {
-                System.out.println("Warning: Hiring manager cannot hire anyone!");
+                if (managerRef.getName().equals(Organization.VACANT)) {
+                    System.out.println("Warning: Vacant position cannot hire.");
+                }
+                else {
+                    System.out.println("Warning: " + managerInput + " cannot hire anyone!");
+                }
                 return;
             }
 
@@ -214,9 +215,9 @@ public class Actions {
                         if (vp.getName().equals(Organization.VACANT)) {
                             if (!vp.contains(promoteSupervisor.getName())) {
                                 vp.setName(promoteSupervisor.getName());
+                                System.out.println(employeeInput + " has been promoted to " +
+                                        vp.getPosition() + " under " + managerInput + ".");
                                 promoteSupervisor.setName(Organization.VACANT);
-                                System.out.println("Promotion completed successfully.\n");
-                                sleep(1000);
                             }
                             else {
                                 System.out.println("Error: " + promoteSupervisor.getName() + " is in " +
@@ -242,13 +243,14 @@ public class Actions {
                         if (vpRef.getSupervisors()[i].getName().equals(Organization.VACANT)) {
                             if (!vpRef.getSupervisors()[i].contains(promoteWorker.getName())) {
                                 vpRef.getSupervisors()[i].setName(promoteWorker.getName());
+                                System.out.println(employeeInput + " has been promoted to " +
+                                        vpRef.getSupervisors()[i].getPosition() + " under " + managerInput + ".");
                                 promoteWorker.setName(Organization.VACANT);
-                                System.out.println("Promotion completed successfully.\n");
-                                sleep(1000);
                                 return;
                             }
                         }
                     }
+                    //TODO: make this condition apply to the vacant check in supervisors
                     System.out.println("No supervisor slots available in " + vpRef.getName() + "'s branch.");
             }
 
@@ -304,8 +306,11 @@ public class Actions {
                         for (int i = 0; i < vpRef.getSupervisors().length; i++) {
                             if (vpRef.getSupervisors()[i].getName().equals(Organization.VACANT)) {
                                 vpRef.getSupervisors()[i].setName(transferEmp.getName());
+                                System.out.println("Transfer complete: " +
+                                        vpRef.getSupervisors()[i].getName() +
+                                        " is now managed by " +
+                                        vpRef.getSupervisors()[i].getManager().getName());
                                 transferEmp.setName(Organization.VACANT);
-                                System.out.println("Transfer completed successfully.\n");
                                 sleep(1000);
                                 break;
                             }
@@ -314,11 +319,21 @@ public class Actions {
                             System.out.println(vpRef.getName() + " has no Supervisor vacancies available to transfer " + transferEmp.getName());
                         }
                     } else if (transferEmp.getPosition().equals("Worker") && transferEmp.getManager().getManager().getName().equals(vpRef.getName())) {
+                        boolean shouldExit = false;
                         for (int i = 0; i < vpRef.getSupervisors().length; i++) {
+                            if (shouldExit) {
+                                break;  //To exit after we've transferred who we are looking for.
+                            }
                             for (int j = 0; j < vpRef.getSupervisors()[i].getWorkers().length; j++) {
                                 if (vpRef.getSupervisors()[i].getWorkers()[j].getName().equals(Organization.VACANT)) {
                                     vpRef.getSupervisors()[i].getWorkers()[j].setName(transferEmp.getName());
+                                    System.out.println("Transfer complete: " +
+                                            vpRef.getSupervisors()[i].getWorkers()[j].getName() +
+                                            " is now managed by " +
+                                            vpRef.getSupervisors()[i].getWorkers()[j].getManager().getName());
                                     transferEmp.setName(Organization.VACANT);
+                                    shouldExit = Boolean.TRUE;
+                                    break;
                                 }
                             }
                         }
